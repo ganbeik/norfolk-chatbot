@@ -1,0 +1,2013 @@
+{
+ "title": "Norfolk County | Prosecution data explorer",
+ "subtitle": "Receipt cohort 2017–2025 · source NFK-Data-final-2017-2025_redacted.csv · SHA-256 08ff8a74790b…",
+ "banner": "",
+ "kpis": [
+  {
+   "label": "Charge rows, receipt cohort 2017–2025",
+   "value": "216,832"
+  },
+  {
+   "label": "Distinct cases received",
+   "value": "93,295"
+  },
+  {
+   "label": "Dated outcome rows in window",
+   "value": "183,647"
+  },
+  {
+   "label": "Cases with any nolle prosequi",
+   "value": "4,192"
+  },
+  {
+   "label": "Charts in this dashboard",
+   "value": "12"
+  }
+ ],
+ "sections": [
+  {
+   "q": "1",
+   "id": "q1",
+   "short": "Disposition trends",
+   "status": "Partially answerable",
+   "title": "How have dispositions for domestic violence, sexual assault, and child abuse changed?",
+   "summary": "Recorded charge outcomes within the DV and SA case tags, the CHAB crime code and an explicit child-harm charge proxy. Denominator: qualifying charge rows per disposition year. Rare labels are pooled as Other recorded. Small CHAB denominators move percentages a lot."
+  },
+  {
+   "q": "2",
+   "id": "q2",
+   "short": "District court outcomes",
+   "status": "Answerable descriptively",
+   "title": "How do outcomes vary across Quincy, Brookline, Dedham, Stoughton and Wrentham?",
+   "summary": "Charge outcomes and the share of case-court pairs with each selected outcome. Rates are unadjusted for case mix, and court can differ across charges in one case."
+  },
+  {
+   "q": "3",
+   "id": "q3",
+   "short": "Crime mix",
+   "status": "County answerable · municipality unavailable",
+   "title": "What is the breakdown of crime types by municipality and countywide?",
+   "summary": "Composition of recorded charge rows by source crime-type code, plus an administrative breakdown by officer agency. Agencies cannot be mapped to incident municipalities."
+  },
+  {
+   "q": "4",
+   "id": "q4",
+   "short": "Victims by race",
+   "status": "Unavailable",
+   "title": "What is the breakdown of victims by race/ethnicity, overall and over time?",
+   "summary": "The CSV has no victim ID, victim role or victim race/ethnicity field.",
+   "unavailable": "No chart: victim attributes and a victim linkage key are absent from the extract."
+  },
+  {
+   "q": "5",
+   "id": "q5",
+   "short": "Charging patterns",
+   "status": "Partially answerable",
+   "title": "How have charging patterns changed for DV, sexual assault, child abuse, elder abuse, and hate crimes?",
+   "summary": "Annual case counts and shares of all recorded receipts, by receipt year. CHAB, ELAB and HACR are provisional code indicators; a hate-crime trend needs a verified definition."
+  },
+  {
+   "q": "6",
+   "id": "q6",
+   "short": "Nolle prosequi",
+   "status": "Answerable for observed window",
+   "title": "What is the nolle prosequi case breakdown by crime type in District and Superior Court?",
+   "summary": "Source code NOPR. A case qualifies at a court level if any eligible charge there received NOPR. Case percentages across crime types can exceed 100%; charge composition sums to 100% within each level."
+  }
+ ],
+ "specs": [
+  {
+   "id": "chart_01",
+   "q": "1",
+   "colorGroup": "outcomes",
+   "focus": "Dismissed",
+   "title": "DV cases: dismissals rose from 67% to 70% of outcomes",
+   "ylabel": "Percent of outcome rows",
+   "kind": "stacked",
+   "unit": "pct",
+   "categories": [
+    "2017",
+    "2018",
+    "2019",
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+    "2024",
+    "2025"
+   ],
+   "isYear": true,
+   "catLabel": "Disposition year",
+   "meta": "DV case tag. Charge outcome rows per disposition year. Annual denominators 1,486 to 3,723.",
+   "finding": "",
+   "notes": "",
+   "hasCounts": true,
+   "denomLabel": "outcome rows",
+   "sdenom": null,
+   "denom": [
+    1486,
+    2723,
+    3125,
+    1930,
+    3117,
+    3286,
+    3723,
+    3232,
+    2892
+   ],
+   "series": [
+    {
+     "name": "Dismissed",
+     "value": [
+      67.362,
+      69.0782,
+      65.664,
+      68.8083,
+      75.3288,
+      76.1412,
+      72.2267,
+      73.8552,
+      70.332
+     ],
+     "count": [
+      1001,
+      1881,
+      2052,
+      1328,
+      2348,
+      2502,
+      2689,
+      2387,
+      2034
+     ]
+    },
+    {
+     "name": "Other recorded plea",
+     "value": [
+      14.3338,
+      13.4778,
+      13.888,
+      15.6995,
+      10.4267,
+      9.7687,
+      10.5023,
+      9.4988,
+      11.4108
+     ],
+     "count": [
+      213,
+      367,
+      434,
+      303,
+      325,
+      321,
+      391,
+      307,
+      330
+     ]
+    },
+    {
+     "name": "CWOF (plea reason)",
+     "value": [
+      10.2961,
+      8.52,
+      10.368,
+      6.2176,
+      6.256,
+      7.2733,
+      7.6014,
+      8.1683,
+      7.9184
+     ],
+     "count": [
+      153,
+      232,
+      324,
+      120,
+      195,
+      239,
+      283,
+      264,
+      229
+     ]
+    },
+    {
+     "name": "Nol Pros",
+     "value": [
+      5.5855,
+      5.3985,
+      5.248,
+      6.943,
+      5.5823,
+      4.504,
+      5.8286,
+      4.8577,
+      7.3306
+     ],
+     "count": [
+      83,
+      147,
+      164,
+      134,
+      174,
+      148,
+      217,
+      157,
+      212
+     ]
+    },
+    {
+     "name": "Not Guilty",
+     "value": [
+      0.9421,
+      2.0933,
+      3.264,
+      1.1399,
+      0.8341,
+      1.6738,
+      1.4504,
+      1.6708,
+      1.9364
+     ],
+     "count": [
+      14,
+      57,
+      102,
+      22,
+      26,
+      55,
+      54,
+      54,
+      56
+     ]
+    },
+    {
+     "name": "Guilty",
+     "value": [
+      0.4711,
+      0.404,
+      1.12,
+      0.8808,
+      0.3208,
+      0.2435,
+      0.7252,
+      1.4233,
+      0.4841
+     ],
+     "count": [
+      7,
+      11,
+      35,
+      17,
+      10,
+      8,
+      27,
+      46,
+      14
+     ]
+    },
+    {
+     "name": "Other recorded",
+     "value": [
+      1.0094,
+      1.0283,
+      0.448,
+      0.3109,
+      1.2512,
+      0.3956,
+      1.6653,
+      0.526,
+      0.5878
+     ],
+     "count": [
+      15,
+      28,
+      14,
+      6,
+      39,
+      13,
+      62,
+      17,
+      17
+     ]
+    }
+   ]
+  },
+  {
+   "id": "chart_02",
+   "q": "1",
+   "colorGroup": "outcomes",
+   "focus": "Dismissed",
+   "title": "SA cases: dismissals rose from 25% to 26% of outcomes",
+   "ylabel": "Percent of outcome rows",
+   "kind": "stacked",
+   "unit": "pct",
+   "categories": [
+    "2017",
+    "2018",
+    "2019",
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+    "2024",
+    "2025"
+   ],
+   "isYear": true,
+   "catLabel": "Disposition year",
+   "meta": "SA case tag. Charge outcome rows per disposition year. Annual denominators 167 to 863.",
+   "finding": "",
+   "notes": "",
+   "hasCounts": true,
+   "denomLabel": "outcome rows",
+   "sdenom": null,
+   "denom": [
+    167,
+    425,
+    506,
+    297,
+    428,
+    525,
+    669,
+    495,
+    863
+   ],
+   "series": [
+    {
+     "name": "Dismissed",
+     "value": [
+      25.1497,
+      23.0588,
+      27.2727,
+      25.9259,
+      38.0841,
+      33.3333,
+      29.7459,
+      29.899,
+      26.4195
+     ],
+     "count": [
+      42,
+      98,
+      138,
+      77,
+      163,
+      175,
+      199,
+      148,
+      228
+     ]
+    },
+    {
+     "name": "Nol Pros",
+     "value": [
+      49.7006,
+      54.3529,
+      29.249,
+      45.7912,
+      25.2336,
+      25.7143,
+      30.3438,
+      36.3636,
+      28.9687
+     ],
+     "count": [
+      83,
+      231,
+      148,
+      136,
+      108,
+      135,
+      203,
+      180,
+      250
+     ]
+    },
+    {
+     "name": "Other recorded plea",
+     "value": [
+      13.1737,
+      14.5882,
+      29.6443,
+      25.5892,
+      24.7664,
+      23.4286,
+      20.7773,
+      16.5657,
+      29.2005
+     ],
+     "count": [
+      22,
+      62,
+      150,
+      76,
+      106,
+      123,
+      139,
+      82,
+      252
+     ]
+    },
+    {
+     "name": "CWOF (plea reason)",
+     "value": [
+      2.994,
+      7.0588,
+      4.1502,
+      2.3569,
+      6.7757,
+      6.2857,
+      10.9118,
+      3.2323,
+      3.708
+     ],
+     "count": [
+      5,
+      30,
+      21,
+      7,
+      29,
+      33,
+      73,
+      16,
+      32
+     ]
+    },
+    {
+     "name": "Guilty",
+     "value": [
+      0,
+      0.2353,
+      6.1265,
+      0,
+      0.9346,
+      4.9524,
+      1.4948,
+      4.6465,
+      7.1842
+     ],
+     "count": [
+      0,
+      1,
+      31,
+      0,
+      4,
+      26,
+      10,
+      23,
+      62
+     ]
+    },
+    {
+     "name": "Not Guilty",
+     "value": [
+      0,
+      0.4706,
+      1.9763,
+      0,
+      1.4019,
+      5.5238,
+      5.5306,
+      8.8889,
+      3.2445
+     ],
+     "count": [
+      0,
+      2,
+      10,
+      0,
+      6,
+      29,
+      37,
+      44,
+      28
+     ]
+    },
+    {
+     "name": "Other recorded",
+     "value": [
+      8.982,
+      0.2353,
+      1.581,
+      0.3367,
+      2.8037,
+      0.7619,
+      1.1958,
+      0.404,
+      1.2746
+     ],
+     "count": [
+      15,
+      1,
+      8,
+      1,
+      12,
+      4,
+      8,
+      2,
+      11
+     ]
+    }
+   ]
+  },
+  {
+   "id": "chart_03",
+   "q": "1",
+   "colorGroup": "outcomes",
+   "focus": "Dismissed",
+   "title": "CHAB-coded charges: only 0–10 outcome rows a year, too few for stable percentages",
+   "ylabel": "Percent of outcome rows",
+   "kind": "stacked",
+   "unit": "pct",
+   "categories": [
+    "2017",
+    "2018",
+    "2019",
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+    "2024",
+    "2025"
+   ],
+   "isYear": true,
+   "catLabel": "Disposition year",
+   "meta": "CHAB crime code. Charge outcome rows per disposition year. Annual denominators 0 to 10.",
+   "finding": "",
+   "notes": "",
+   "hasCounts": true,
+   "denomLabel": "outcome rows",
+   "sdenom": null,
+   "denom": [
+    5,
+    2,
+    0,
+    2,
+    10,
+    8,
+    10,
+    10,
+    10
+   ],
+   "series": [
+    {
+     "name": "Dismissed",
+     "value": [
+      20,
+      100,
+      null,
+      50,
+      100,
+      25,
+      60,
+      60,
+      20
+     ],
+     "count": [
+      1,
+      2,
+      0,
+      1,
+      10,
+      2,
+      6,
+      6,
+      2
+     ]
+    },
+    {
+     "name": "Other recorded plea",
+     "value": [
+      60,
+      0,
+      null,
+      0,
+      0,
+      25,
+      30,
+      40,
+      20
+     ],
+     "count": [
+      3,
+      0,
+      0,
+      0,
+      0,
+      2,
+      3,
+      4,
+      2
+     ]
+    },
+    {
+     "name": "Nol Pros",
+     "value": [
+      0,
+      0,
+      null,
+      0,
+      0,
+      0,
+      10,
+      0,
+      60
+     ],
+     "count": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      6
+     ]
+    },
+    {
+     "name": "CWOF (plea reason)",
+     "value": [
+      20,
+      0,
+      null,
+      0,
+      0,
+      25,
+      0,
+      0,
+      0
+     ],
+     "count": [
+      1,
+      0,
+      0,
+      0,
+      0,
+      2,
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "name": "Not Guilty",
+     "value": [
+      0,
+      0,
+      null,
+      50,
+      0,
+      12.5,
+      0,
+      0,
+      0
+     ],
+     "count": [
+      0,
+      0,
+      0,
+      1,
+      0,
+      1,
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "name": "Guilty",
+     "value": [
+      0,
+      0,
+      null,
+      0,
+      0,
+      12.5,
+      0,
+      0,
+      0
+     ],
+     "count": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "name": "Other recorded",
+     "value": [
+      0,
+      0,
+      null,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "count": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "chart_04",
+   "q": "1",
+   "colorGroup": "outcomes",
+   "focus": "Dismissed",
+   "title": "Child-harm charges: only 27–81 outcome rows a year, too few for stable percentages",
+   "ylabel": "Percent of outcome rows",
+   "kind": "stacked",
+   "unit": "pct",
+   "categories": [
+    "2017",
+    "2018",
+    "2019",
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+    "2024",
+    "2025"
+   ],
+   "isYear": true,
+   "catLabel": "Disposition year",
+   "meta": "Explicit child harm charge proxy. Charge outcome rows per disposition year. Annual denominators 27 to 81.",
+   "finding": "",
+   "notes": "",
+   "hasCounts": true,
+   "denomLabel": "outcome rows",
+   "sdenom": null,
+   "denom": [
+    27,
+    48,
+    48,
+    42,
+    45,
+    68,
+    81,
+    61,
+    59
+   ],
+   "series": [
+    {
+     "name": "Dismissed",
+     "value": [
+      59.2593,
+      45.8333,
+      37.5,
+      47.619,
+      44.4444,
+      54.4118,
+      45.679,
+      55.7377,
+      33.8983
+     ],
+     "count": [
+      16,
+      22,
+      18,
+      20,
+      20,
+      37,
+      37,
+      34,
+      20
+     ]
+    },
+    {
+     "name": "CWOF (plea reason)",
+     "value": [
+      18.5185,
+      16.6667,
+      25,
+      11.9048,
+      15.5556,
+      10.2941,
+      24.6914,
+      11.4754,
+      25.4237
+     ],
+     "count": [
+      5,
+      8,
+      12,
+      5,
+      7,
+      7,
+      20,
+      7,
+      15
+     ]
+    },
+    {
+     "name": "Other recorded plea",
+     "value": [
+      7.4074,
+      16.6667,
+      25,
+      11.9048,
+      17.7778,
+      19.1176,
+      17.284,
+      16.3934,
+      20.339
+     ],
+     "count": [
+      2,
+      8,
+      12,
+      5,
+      8,
+      13,
+      14,
+      10,
+      12
+     ]
+    },
+    {
+     "name": "Nol Pros",
+     "value": [
+      14.8148,
+      16.6667,
+      4.1667,
+      28.5714,
+      17.7778,
+      11.7647,
+      7.4074,
+      3.2787,
+      13.5593
+     ],
+     "count": [
+      4,
+      8,
+      2,
+      12,
+      8,
+      8,
+      6,
+      2,
+      8
+     ]
+    },
+    {
+     "name": "Not Guilty",
+     "value": [
+      0,
+      4.1667,
+      8.3333,
+      0,
+      2.2222,
+      1.4706,
+      2.4691,
+      13.1148,
+      3.3898
+     ],
+     "count": [
+      0,
+      2,
+      4,
+      0,
+      1,
+      1,
+      2,
+      8,
+      2
+     ]
+    },
+    {
+     "name": "Guilty",
+     "value": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      1.4706,
+      0,
+      0,
+      3.3898
+     ],
+     "count": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      2
+     ]
+    },
+    {
+     "name": "Other recorded",
+     "value": [
+      0,
+      0,
+      0,
+      0,
+      2.2222,
+      1.4706,
+      2.4691,
+      0,
+      0
+     ],
+     "count": [
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      2,
+      0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "chart_05",
+   "q": "2",
+   "colorGroup": "outcomes",
+   "focus": "Dismissed",
+   "title": "Dismissals are 48–58% of charge outcomes in every district court",
+   "ylabel": "Percent of rows",
+   "kind": "stacked",
+   "unit": "pct",
+   "categories": [
+    "Brookline",
+    "Dedham",
+    "Quincy",
+    "Stoughton",
+    "Wrentham"
+   ],
+   "isYear": false,
+   "catLabel": "Court",
+   "meta": "Charge outcome composition across five district courts. Top labels shown, rest pooled.",
+   "finding": "",
+   "notes": "",
+   "hasCounts": true,
+   "denomLabel": "charge outcome rows",
+   "sdenom": null,
+   "denom": [
+    5831,
+    28425,
+    68105,
+    23115,
+    33385
+   ],
+   "series": [
+    {
+     "name": "Dismissed",
+     "value": [
+      58.3433,
+      47.6412,
+      56.7858,
+      58.0229,
+      56.0911
+     ],
+     "count": [
+      3402,
+      13542,
+      38674,
+      13412,
+      18726
+     ]
+    },
+    {
+     "name": "Not Responsible",
+     "value": [
+      12.9995,
+      14.1636,
+      10.6277,
+      18.3863,
+      15.2374
+     ],
+     "count": [
+      758,
+      4026,
+      7238,
+      4250,
+      5087
+     ]
+    },
+    {
+     "name": "Other recorded plea",
+     "value": [
+      12.4507,
+      13.7555,
+      11.748,
+      7.9689,
+      10.1842
+     ],
+     "count": [
+      726,
+      3910,
+      8001,
+      1842,
+      3400
+     ]
+    },
+    {
+     "name": "CWOF (plea reason)",
+     "value": [
+      6.5512,
+      10.4274,
+      7.7322,
+      6.6321,
+      9.6271
+     ],
+     "count": [
+      382,
+      2964,
+      5266,
+      1533,
+      3214
+     ]
+    },
+    {
+     "name": "Nol Pros",
+     "value": [
+      6.2082,
+      6.8039,
+      9.2255,
+      5.8577,
+      5.152
+     ],
+     "count": [
+      362,
+      1934,
+      6283,
+      1354,
+      1720
+     ]
+    },
+    {
+     "name": "Responsible Filed",
+     "value": [
+      0.5831,
+      4.1126,
+      0.928,
+      0.6143,
+      1.0993
+     ],
+     "count": [
+      34,
+      1169,
+      632,
+      142,
+      367
+     ]
+    },
+    {
+     "name": "Not Guilty",
+     "value": [
+      0.7546,
+      1.7027,
+      1.2393,
+      1.7088,
+      1.4677
+     ],
+     "count": [
+      44,
+      484,
+      844,
+      395,
+      490
+     ]
+    },
+    {
+     "name": "Other recorded",
+     "value": [
+      2.1094,
+      1.3931,
+      1.7135,
+      0.809,
+      1.1412
+     ],
+     "count": [
+      123,
+      396,
+      1167,
+      187,
+      381
+     ]
+    }
+   ]
+  },
+  {
+   "id": "chart_06",
+   "q": "2",
+   "colorGroup": "courts",
+   "focus": null,
+   "title": "Any dismissal: 66% in Dedham to 81% in Stoughton",
+   "ylabel": "Percent of case-court pairs",
+   "kind": "dot",
+   "unit": "pct",
+   "categories": [
+    "Dismissed",
+    "Nol Pros",
+    "CWOF (plea reason)",
+    "Other recorded plea",
+    "Guilty",
+    "Not Guilty"
+   ],
+   "isYear": false,
+   "catLabel": "Outcome",
+   "meta": "Share of case-court pairs with each outcome; one dot per court. Pairs can have several outcomes. Unadjusted for case mix.",
+   "finding": "",
+   "notes": "",
+   "hasCounts": true,
+   "denomLabel": "case-court pairs",
+   "sdenom": {
+    "Quincy": 30633,
+    "Brookline": 2707,
+    "Dedham": 13071,
+    "Stoughton": 9937,
+    "Wrentham": 15356
+   },
+   "denom": null,
+   "series": [
+    {
+     "name": "Quincy",
+     "value": [
+      75.0041,
+      5.827,
+      12.7771,
+      15.7608,
+      0.555,
+      1.8444
+     ],
+     "count": [
+      22976,
+      1785,
+      3914,
+      4828,
+      170,
+      565
+     ]
+    },
+    {
+     "name": "Brookline",
+     "value": [
+      74.6583,
+      4.2852,
+      8.6812,
+      17.9165,
+      0.5911,
+      0.9974
+     ],
+     "count": [
+      2021,
+      116,
+      235,
+      485,
+      16,
+      27
+     ]
+    },
+    {
+     "name": "Dedham",
+     "value": [
+      65.8557,
+      5.6308,
+      17.6574,
+      19.7001,
+      1.8208,
+      2.6012
+     ],
+     "count": [
+      8608,
+      736,
+      2308,
+      2575,
+      238,
+      340
+     ]
+    },
+    {
+     "name": "Stoughton",
+     "value": [
+      80.5374,
+      3.6631,
+      11.8446,
+      11.11,
+      0.7447,
+      2.3045
+     ],
+     "count": [
+      8003,
+      364,
+      1177,
+      1104,
+      74,
+      229
+     ]
+    },
+    {
+     "name": "Wrentham",
+     "value": [
+      76.589,
+      3.5491,
+      16.5733,
+      14.1052,
+      1.335,
+      2.175
+     ],
+     "count": [
+      11761,
+      545,
+      2545,
+      2166,
+      205,
+      334
+     ]
+    }
+   ]
+  },
+  {
+   "id": "chart_07",
+   "q": "3",
+   "colorGroup": null,
+   "focus": null,
+   "title": "MMVE accounts for 32% of all charge rows countywide",
+   "ylabel": "Percent of charge rows",
+   "kind": "barh",
+   "unit": "pct",
+   "categories": [
+    "MMVE",
+    "OUIA",
+    "NARC",
+    "LARC",
+    "ASBA",
+    "ASSL",
+    "SHOP",
+    "FIRE",
+    "BREN",
+    "ASSB",
+    "VIOL",
+    "RECS",
+    "LSPR",
+    "OUID",
+    "ASDW"
+   ],
+   "isYear": false,
+   "catLabel": "Crime code",
+   "meta": "Most frequent countywide crime codes (top 15), receipt cohort.",
+   "finding": "",
+   "notes": "",
+   "hasCounts": true,
+   "denomLabel": "charge rows in cohort",
+   "sdenom": null,
+   "denom": [
+    216832,
+    216832,
+    216832,
+    216832,
+    216832,
+    216832,
+    216832,
+    216832,
+    216832,
+    216832,
+    216832,
+    216832,
+    216832,
+    216832,
+    216832
+   ],
+   "series": [
+    {
+     "name": "Share of charge rows",
+     "value": [
+      32.1396,
+      9.3436,
+      7.7014,
+      5.4046,
+      5.3004,
+      3.511,
+      2.9447,
+      2.6135,
+      2.204,
+      2.0463,
+      1.7096,
+      1.426,
+      1.4241,
+      1.3849,
+      1.3287
+     ],
+     "count": [
+      69689,
+      20260,
+      16699,
+      11719,
+      11493,
+      7613,
+      6385,
+      5667,
+      4779,
+      4437,
+      3707,
+      3092,
+      3088,
+      3003,
+      2881
+     ]
+    }
+   ]
+  },
+  {
+   "id": "chart_08",
+   "q": "3",
+   "colorGroup": null,
+   "focus": "MMVE",
+   "title": "The largest crime category differs across agencies (MMVE, NARC)",
+   "ylabel": "Percent of rows",
+   "kind": "stacked",
+   "unit": "pct",
+   "categories": [
+    "BRAP",
+    "BROP",
+    "Missing",
+    "QUIP",
+    "RANP",
+    "SPFR",
+    "SPML",
+    "STOP",
+    "WEYP"
+   ],
+   "isYear": false,
+   "catLabel": "Agency",
+   "meta": "Crime mix of the eight highest-volume officer agencies plus Missing. Agencies are not municipalities.",
+   "finding": "",
+   "notes": "",
+   "hasCounts": true,
+   "denomLabel": "rows",
+   "sdenom": null,
+   "denom": [
+    13152,
+    8870,
+    2503,
+    29075,
+    11051,
+    11049,
+    12207,
+    11198,
+    20154
+   ],
+   "series": [
+    {
+     "name": "MMVE",
+     "value": [
+      17.1837,
+      30.3946,
+      19.4966,
+      8.8736,
+      20.4506,
+      63.861,
+      65.4542,
+      34.2383,
+      28.1334
+     ],
+     "count": [
+      2260,
+      2696,
+      488,
+      2580,
+      2260,
+      7056,
+      7990,
+      3834,
+      5670
+     ]
+    },
+    {
+     "name": "NARC",
+     "value": [
+      10.9337,
+      3.3709,
+      3.4758,
+      18.6896,
+      6.1533,
+      5.7019,
+      5.7262,
+      3.9382,
+      11.3724
+     ],
+     "count": [
+      1438,
+      299,
+      87,
+      5434,
+      680,
+      630,
+      699,
+      441,
+      2292
+     ]
+    },
+    {
+     "name": "OUIA",
+     "value": [
+      6.1968,
+      3.6189,
+      2.6368,
+      3.2812,
+      6.4338,
+      14.9606,
+      13.5005,
+      7.7782,
+      9.4125
+     ],
+     "count": [
+      815,
+      321,
+      66,
+      954,
+      711,
+      1653,
+      1648,
+      871,
+      1897
+     ]
+    },
+    {
+     "name": "ASSL",
+     "value": [
+      7.7251,
+      0.9808,
+      0.7591,
+      9.3448,
+      10.4063,
+      0.0996,
+      0.5243,
+      0.6073,
+      8.0083
+     ],
+     "count": [
+      1016,
+      87,
+      19,
+      2717,
+      1150,
+      11,
+      64,
+      68,
+      1614
+     ]
+    },
+    {
+     "name": "LARC",
+     "value": [
+      10.333,
+      8.1849,
+      12.465,
+      5.8229,
+      3.8187,
+      0.4254,
+      0.172,
+      5.8046,
+      3.4683
+     ],
+     "count": [
+      1359,
+      726,
+      312,
+      1693,
+      422,
+      47,
+      21,
+      650,
+      699
+     ]
+    },
+    {
+     "name": "ASBA",
+     "value": [
+      4.2807,
+      6.9673,
+      5.0739,
+      4.4574,
+      5.5108,
+      0.5159,
+      0.2949,
+      9.5374,
+      4.5152
+     ],
+     "count": [
+      563,
+      618,
+      127,
+      1296,
+      609,
+      57,
+      36,
+      1068,
+      910
+     ]
+    },
+    {
+     "name": "Other recorded",
+     "value": [
+      43.347,
+      46.4825,
+      56.0927,
+      49.5305,
+      47.2265,
+      14.4357,
+      14.3278,
+      38.0961,
+      35.0898
+     ],
+     "count": [
+      5701,
+      4123,
+      1404,
+      14401,
+      5219,
+      1595,
+      1749,
+      4266,
+      7072
+     ]
+    }
+   ]
+  },
+  {
+   "id": "chart_09",
+   "q": "5",
+   "colorGroup": null,
+   "focus": null,
+   "title": "DV-tagged cases went from 1,726 in 2017 to 1,540 in 2025 (-11%)",
+   "ylabel": "Percent of received cases",
+   "kind": "line",
+   "unit": "pct",
+   "categories": [
+    "2017",
+    "2018",
+    "2019",
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+    "2024",
+    "2025"
+   ],
+   "isYear": true,
+   "catLabel": "Receipt year",
+   "meta": "DV and SA indicators: share of all received cases carrying each tag. Definitions overlap; do not add.",
+   "finding": "",
+   "notes": "",
+   "hasCounts": true,
+   "denomLabel": "received cases",
+   "sdenom": null,
+   "denom": [
+    12722,
+    12011,
+    12188,
+    8022,
+    8544,
+    10227,
+    9974,
+    9696,
+    9911
+   ],
+   "series": [
+    {
+     "name": "DV case tag",
+     "value": [
+      13.567,
+      14.6699,
+      14.104,
+      17.9132,
+      18.6564,
+      17.2191,
+      17.5356,
+      17.1927,
+      15.5383
+     ],
+     "count": [
+      1726,
+      1762,
+      1719,
+      1437,
+      1594,
+      1761,
+      1749,
+      1667,
+      1540
+     ]
+    },
+    {
+     "name": "SA case tag",
+     "value": [
+      1.3284,
+      1.407,
+      1.2061,
+      1.7701,
+      2.1536,
+      1.7209,
+      1.7044,
+      2.2587,
+      2.139
+     ],
+     "count": [
+      169,
+      169,
+      147,
+      142,
+      184,
+      176,
+      170,
+      219,
+      212
+     ]
+    },
+    {
+     "name": "Family / household charge",
+     "value": [
+      6.7285,
+      7.6929,
+      7.6058,
+      10.7081,
+      10.6742,
+      9.5923,
+      9.8055,
+      9.9938,
+      9.2624
+     ],
+     "count": [
+      856,
+      924,
+      927,
+      859,
+      912,
+      981,
+      978,
+      969,
+      918
+     ]
+    },
+    {
+     "name": "RAPE or INDO crime code",
+     "value": [
+      0.5581,
+      0.6328,
+      0.5005,
+      0.7729,
+      0.7725,
+      0.9094,
+      0.782,
+      1.0314,
+      0.9686
+     ],
+     "count": [
+      71,
+      76,
+      61,
+      62,
+      66,
+      93,
+      78,
+      100,
+      96
+     ]
+    }
+   ]
+  },
+  {
+   "id": "chart_10",
+   "q": "5",
+   "colorGroup": null,
+   "focus": null,
+   "title": "Less frequent indicators stay at or below 167 cases a year",
+   "ylabel": "Distinct cases",
+   "kind": "line",
+   "unit": "count",
+   "categories": [
+    "2017",
+    "2018",
+    "2019",
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+    "2024",
+    "2025"
+   ],
+   "isYear": true,
+   "catLabel": "Receipt year",
+   "meta": "Less frequent indicators: distinct cases per receipt year. CHAB, ELAB and HACR meanings need codebook confirmation.",
+   "finding": "",
+   "notes": "",
+   "hasCounts": true,
+   "denomLabel": "",
+   "sdenom": null,
+   "denom": null,
+   "series": [
+    {
+     "name": "CHAB crime code",
+     "value": [
+      2,
+      4,
+      2,
+      3,
+      1,
+      2,
+      5,
+      4,
+      5
+     ],
+     "count": null
+    },
+    {
+     "name": "Explicit child harm charge proxy",
+     "value": [
+      53,
+      36,
+      51,
+      33,
+      56,
+      57,
+      57,
+      43,
+      53
+     ],
+     "count": null
+    },
+    {
+     "name": "ELAB crime code",
+     "value": [
+      2,
+      1,
+      0,
+      1,
+      2,
+      7,
+      2,
+      6,
+      3
+     ],
+     "count": null
+    },
+    {
+     "name": "Elder / disabled charge proxy",
+     "value": [
+      97,
+      91,
+      118,
+      95,
+      86,
+      121,
+      153,
+      167,
+      165
+     ],
+     "count": null
+    },
+    {
+     "name": "Civil-rights charge proxy",
+     "value": [
+      4,
+      5,
+      9,
+      6,
+      8,
+      9,
+      8,
+      3,
+      2
+     ],
+     "count": null
+    },
+    {
+     "name": "HACR crime code (unverified)",
+     "value": [
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "count": null
+    }
+   ]
+  },
+  {
+   "id": "chart_11",
+   "q": "6",
+   "colorGroup": null,
+   "focus": null,
+   "title": "District cases with a nolle prosequi: 231 in 2017, 417 in 2025",
+   "ylabel": "Distinct cases",
+   "kind": "line",
+   "unit": "count",
+   "categories": [
+    "2017",
+    "2018",
+    "2019",
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+    "2024",
+    "2025"
+   ],
+   "isYear": true,
+   "catLabel": "Disposition year",
+   "meta": "Cases with any NOPR by disposition year: distinct case IDs with at least one NOPR charge, by court level.",
+   "finding": "District: 3,545 cases with any NOPR. Leading crime code NARC, 654 cases (18.4%). Superior: 352 cases with any NOPR. Leading crime code NARC, 104 cases (29.5%).",
+   "notes": "",
+   "hasCounts": true,
+   "denomLabel": "",
+   "sdenom": null,
+   "denom": null,
+   "series": [
+    {
+     "name": "District",
+     "value": [
+      231,
+      377,
+      487,
+      472,
+      324,
+      352,
+      389,
+      496,
+      417
+     ],
+     "count": null
+    },
+    {
+     "name": "Missing",
+     "value": [
+      31,
+      58,
+      56,
+      55,
+      96,
+      61,
+      42,
+      17,
+      16
+     ],
+     "count": null
+    },
+    {
+     "name": "Other / unmapped",
+     "value": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0
+     ],
+     "count": null
+    },
+    {
+     "name": "Superior",
+     "value": [
+      9,
+      27,
+      39,
+      28,
+      51,
+      57,
+      52,
+      44,
+      45
+     ],
+     "count": null
+    }
+   ]
+  },
+  {
+   "id": "chart_12",
+   "q": "6",
+   "colorGroup": null,
+   "focus": null,
+   "title": "NARC is the most common crime code among NOPR charges in both courts",
+   "ylabel": "Percent of NOPR charge rows",
+   "kind": "barh",
+   "unit": "pct",
+   "categories": [
+    "NARC",
+    "FIRE",
+    "RAPE",
+    "MMVE",
+    "TRAF",
+    "AROB",
+    "BREN",
+    "LARC",
+    "OUIA",
+    "ASBA",
+    "HINV",
+    "ASSL"
+   ],
+   "isYear": false,
+   "catLabel": "Crime code",
+   "meta": "Charge composition within NOPR outcomes. Each court level sums to 100% across all crime codes; 12 most common shown.",
+   "finding": "",
+   "notes": "",
+   "hasCounts": true,
+   "denomLabel": "",
+   "sdenom": {
+    "District": 11653,
+    "Superior": 1382
+   },
+   "denom": null,
+   "series": [
+    {
+     "name": "District",
+     "value": [
+      20.3724,
+      11.0959,
+      6.8738,
+      6.5734,
+      5.0287,
+      3.0636,
+      3.6385,
+      3.5956,
+      3.4412,
+      2.9349,
+      2.0166,
+      2.317
+     ],
+     "count": [
+      2374,
+      1293,
+      801,
+      766,
+      586,
+      357,
+      424,
+      419,
+      401,
+      342,
+      235,
+      270
+     ]
+    },
+    {
+     "name": "Superior",
+     "value": [
+      27.0622,
+      13.6035,
+      13.4588,
+      0.0724,
+      4.4139,
+      6.3676,
+      1.4472,
+      1.7366,
+      0.2171,
+      2.0984,
+      6.7294,
+      1.1577
+     ],
+     "count": [
+      374,
+      188,
+      186,
+      1,
+      61,
+      88,
+      20,
+      24,
+      3,
+      29,
+      93,
+      16
+     ]
+    }
+   ]
+  }
+ ],
+ "footer": "Aggregates only. Missing stays separate from explicit unknown codes. Cohorts can overlap and must not be added together."
+}

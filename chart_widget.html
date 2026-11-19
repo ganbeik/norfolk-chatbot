@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light"><head><meta charset="utf-8">
+<style>
+.viz-root{
+  color-scheme:light;
+  --page:#f4f3f0; --surface-1:#fcfcfb; --surface-2:#efeeea; --border:#dedcd6;
+  --text-primary:#0b0b0b; --text-secondary:#52514e; --text-muted:#7a7974;
+  --grid:#e6e4df; --axis:#a9a7a0; --accent:#2b67b0; --band:rgba(43,103,176,.08);
+  --s1:#2b67b0; --s2:#e07b3c; --s3:#14a38b; --s4:#8b6cc9; --s5:#d4a017; --s6:#d0566e; --s7:#6f9a2e;
+  --neutral:#c2c0b9;
+}
+@media (prefers-color-scheme: dark){
+  :root:where(:not([data-theme="light"])) .viz-root{
+    color-scheme:dark;
+    --page:#121211; --surface-1:#1a1a19; --surface-2:#242422; --border:#33332f;
+    --text-primary:#f0efec; --text-secondary:#c3c2b7; --text-muted:#8f8e86;
+    --grid:#2c2c29; --axis:#5c5b55; --accent:#4a86d1; --band:rgba(74,134,209,.14);
+    --s1:#4a86d1; --s2:#d9752f; --s3:#1a9b84; --s4:#9a80dc; --s5:#b88a0a; --s6:#d9637a; --s7:#7aa53a;
+    --neutral:#6b6a64;
+  }
+}
+:root[data-theme="dark"] .viz-root{
+  color-scheme:dark;
+  --page:#121211; --surface-1:#1a1a19; --surface-2:#242422; --border:#33332f;
+  --text-primary:#f0efec; --text-secondary:#c3c2b7; --text-muted:#8f8e86;
+  --grid:#2c2c29; --axis:#5c5b55; --accent:#4a86d1; --band:rgba(74,134,209,.14);
+  --s1:#4a86d1; --s2:#d9752f; --s3:#1a9b84; --s4:#9a80dc; --s5:#b88a0a; --s6:#d9637a; --s7:#7aa53a;
+  --neutral:#6b6a64;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font:14px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.viz-root{background:var(--page);color:var(--text-primary);min-height:100vh}
+header.top{position:sticky;top:0;z-index:5;background:var(--surface-1);border-bottom:1px solid var(--border);padding:12px 20px;display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center}
+header.top h1{font-size:17px;margin:0;font-weight:650}
+header.top .sub{color:var(--text-secondary);font-size:12px}
+.filters{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-left:auto}
+.filters label{font-size:12px;color:var(--text-secondary);display:flex;gap:6px;align-items:center}
+select,button,input{font:inherit;font-size:13px;color:var(--text-primary);background:var(--surface-1);border:1px solid var(--border);border-radius:6px;padding:4px 8px}
+button{cursor:pointer}
+button:hover{background:var(--surface-2)}
+button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.layout{display:grid;grid-template-columns:230px 1fr;gap:0}
+nav.side{position:sticky;top:57px;align-self:start;height:calc(100vh - 57px);overflow:auto;padding:16px 12px;border-right:1px solid var(--border);background:var(--surface-1)}
+nav.side a{display:block;padding:7px 10px;border-radius:6px;color:var(--text-secondary);text-decoration:none;font-size:13px;margin-bottom:2px}
+nav.side a:hover{background:var(--surface-2);color:var(--text-primary)}
+nav.side a.active{background:var(--band);color:var(--text-primary);font-weight:600}
+nav.side .qn{font-variant-numeric:tabular-nums;color:var(--text-muted);margin-right:6px}
+main{padding:20px 24px 60px;min-width:0}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-bottom:24px}
+.kpi{background:var(--surface-1);border:1px solid var(--border);border-radius:10px;padding:12px 14px}
+.kpi .v{font-size:26px;font-weight:650;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.kpi .l{font-size:12px;color:var(--text-secondary)}
+section.q{margin-bottom:34px;scroll-margin-top:72px}
+section.q h2{font-size:18px;margin:0 0 4px}
+.status{display:inline-block;font-size:11px;font-weight:600;border:1px solid var(--border);border-radius:999px;padding:1px 9px;margin-left:8px;vertical-align:3px;color:var(--text-secondary);background:var(--surface-1)}
+section.q p.summary{color:var(--text-secondary);max-width:900px;margin:4px 0 14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(520px,1fr));gap:16px}
+.card{background:var(--surface-1);border:1px solid var(--border);border-radius:10px;padding:14px 16px 10px;min-width:0;position:relative}
+.card h3{font-size:14px;margin:0;font-weight:620}
+.card .meta{font-size:12px;color:var(--text-secondary);margin:2px 0 8px}
+.card .finding{font-size:12.5px;background:var(--surface-2);border-radius:6px;padding:6px 9px;margin:0 0 8px;color:var(--text-primary)}
+.cardhead{display:flex;gap:10px;align-items:flex-start;justify-content:space-between}
+.seg{display:inline-flex;border:1px solid var(--border);border-radius:6px;overflow:hidden;flex:none}
+.seg button{border:0;border-radius:0;padding:3px 9px;font-size:12px;color:var(--text-secondary)}
+.seg button[aria-pressed="true"]{background:var(--band);color:var(--text-primary);font-weight:600}
+.legend{display:flex;flex-wrap:wrap;gap:4px 6px;margin:2px 0 4px}
+.legend button{display:inline-flex;align-items:center;gap:6px;border:1px solid transparent;background:none;padding:2px 7px;font-size:12px;color:var(--text-secondary);border-radius:999px}
+.legend button:hover{border-color:var(--border)}
+.legend button[aria-pressed="false"]{opacity:.38;text-decoration:line-through}
+.legend .key{width:10px;height:10px;border-radius:2px;flex:none}
+.legend .key.line{height:2px;width:14px;border-radius:1px}
+.chart{position:relative;width:100%}
+.chart svg{display:block;width:100%;height:auto;overflow:visible}
+.chart path,.chart circle{transition:opacity .12s}
+.chart text{fill:var(--text-muted);font-size:11px;font-variant-numeric:tabular-nums}
+.chart .ylab{fill:var(--text-secondary)}
+.chart .inlab{fill:var(--text-primary);font-size:10px;font-weight:600;pointer-events:none}
+.chart .inlab.on{fill:#fff}
+.chart .tinted{fill-opacity:.5}
+:root[data-theme="dark"] .chart .tinted{fill-opacity:.72}
+@media (prefers-color-scheme: dark){:root:where(:not([data-theme="light"])) .chart .tinted{fill-opacity:.72}}
+.chart .endlab{fill:var(--text-secondary);font-size:11px;pointer-events:none}
+.tip{position:absolute;pointer-events:none;transition:none;background:var(--surface-1);border:1px solid var(--border);border-radius:8px;box-shadow:0 4px 18px rgba(0,0,0,.14);padding:8px 10px;font-size:12px;min-width:180px;max-width:320px;z-index:4;display:none}
+.tip .th{display:flex;align-items:center;gap:7px;font-weight:650}
+.tip .tk{width:10px;height:10px;border-radius:2px;flex:none}
+.tip .big{font-size:20px;font-weight:650;font-variant-numeric:tabular-nums;margin:2px 0}
+.tip .ln{color:var(--text-secondary);font-variant-numeric:tabular-nums}
+.tip .h{font-weight:650;margin-bottom:2px}
+.tip .d{color:var(--text-muted);margin-bottom:5px}
+.tip .r{display:grid;grid-template-columns:14px auto 1fr;gap:6px;align-items:center;padding:1px 0}
+.tip .r .k{height:2px;border-radius:1px}
+.tip .r b{font-variant-numeric:tabular-nums}
+.tip .r span{color:var(--text-secondary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tip .r small{color:var(--text-muted);grid-column:2/4;margin-top:-2px}
+.tools{display:flex;gap:8px;align-items:center;margin-top:6px;flex-wrap:wrap}
+.tools button{font-size:12px;padding:2px 8px;color:var(--text-secondary)}
+.tablewrap{max-height:320px;overflow:auto;margin-top:8px;border:1px solid var(--border);border-radius:6px;display:none}
+.tablewrap.open{display:block}
+table{border-collapse:collapse;width:100%;font-size:12px;font-variant-numeric:tabular-nums}
+th,td{padding:4px 8px;border-bottom:1px solid var(--grid);text-align:right;white-space:nowrap}
+th:first-child,td:first-child{text-align:left;position:sticky;left:0;background:var(--surface-1)}
+thead th{position:sticky;top:0;background:var(--surface-2);font-weight:600;z-index:1}
+.unavail{border-style:dashed;color:var(--text-secondary)}
+.empty{padding:30px;text-align:center;color:var(--text-muted)}
+.demo{background:#fff3cd;color:#5c4400;padding:6px 20px;font-size:12.5px;border-bottom:1px solid #e9d38a}
+footer{color:var(--text-muted);font-size:12px;margin-top:30px}
+@media (max-width:900px){.layout{grid-template-columns:1fr}nav.side{display:none}.grid{grid-template-columns:1fr}}
+
+body{background:transparent}.viz-root{min-height:0;background:transparent;padding:2px 2px 30px}
+.card{border-radius:10px}
+</style></head>
+<body><div class="viz-root" id="root"><div id="host"></div></div>
+<script>
+const DATA = /*__DATA__*/null;
+(function(){
+"use strict";
+const NS = "http://www.w3.org/2000/svg";
+const SLOTS = ["--s1","--s2","--s3","--s4","--s5","--s6","--s7"];
+const NEUTRAL = /^(other recorded|other|missing|unknown|other \/ unmapped)$/i;
+const state = { yFrom:null, yTo:null, hidden:{}, mode:{}, table:{} };
+
+function el(tag, attrs, parent, text){
+  const n = document.createElement(tag);
+  if (attrs) for (const k in attrs) n.setAttribute(k, attrs[k]);
+  if (text != null) n.textContent = text;
+  if (parent) parent.appendChild(n);
+  return n;
+}
+function sv(tag, attrs, parent){
+  const n = document.createElementNS(NS, tag);
+  if (attrs) for (const k in attrs) n.setAttribute(k, attrs[k]);
+  if (parent) parent.appendChild(n);
+  return n;
+}
+const fmtInt = v => v == null ? "–" : Math.round(v).toLocaleString();
+const fmtPct = v => v == null ? "–" : (Math.abs(v) < 10 ? v.toFixed(1) : v.toFixed(1)) + "%";
+function niceMax(v){
+  if (!(v > 0)) return 1;
+  const p = Math.pow(10, Math.floor(Math.log10(v)));
+  for (const m of [1,1.2,1.5,2,2.5,3,4,5,6,8,10]) if (m*p >= v) return m*p;
+  return 10*p;
+}
+function ticks(max, n){ const s = niceMax(max/n - 1e-9); const out=[]; for(let v=0; v<=max+1e-9; v+=s) out.push(+v.toFixed(6)); return out; }
+function cssVar(name){ return getComputedStyle(document.getElementById("root")).getPropertyValue(name).trim(); }
+
+// Colour follows the entity: a series keeps one slot across every chart in its question
+// (and never changes when other series are hidden). Falls back to per-chart order past 8 names.
+const colorMaps = {};
+function colorFor(spec, name){
+  if (spec.colors && spec.colors[name]) return spec.colors[name];
+  if (NEUTRAL.test(name)) return "var(--neutral)";
+  if (spec.series.length === 1) return "var(--s1)";
+  const grp = spec.colorGroup || spec.q;
+  if (!colorMaps[grp]){
+    const names = [];
+    DATA.specs.filter(s => (s.colorGroup || s.q) === grp && s.series.length > 1).forEach(s => s.series.forEach(x => {
+      if (!NEUTRAL.test(x.name) && !names.includes(x.name)) names.push(x.name); }));
+    colorMaps[grp] = names;
+  }
+  const names = colorMaps[grp];
+  const fixed = n => { const i = names.indexOf(n); return i >= 0 && i < SLOTS.length ? i : -1; };
+  let slot = fixed(name);
+  if (slot < 0){
+    // more names than colours in this group: borrow a slot no fixed series in this chart uses
+    const own = spec.series.filter(x => !NEUTRAL.test(x.name)).map(x => x.name);
+    const used = new Set(own.map(fixed).filter(i => i >= 0));
+    const free = SLOTS.map((_, i) => i).filter(i => !used.has(i));
+    const extras = own.filter(n => fixed(n) < 0);
+    slot = free[extras.indexOf(name) % Math.max(1, free.length)];
+    if (slot == null) return "var(--neutral)";
+  }
+  return "var(" + SLOTS[slot] + ")";
+}
+
+// ---------- data view: applies year filter, measure mode, hidden series ----------
+function view(spec){
+  let idx = spec.categories.map((c,i)=>i);
+  if (spec.isYear && state.yFrom != null){
+    idx = idx.filter(i => +spec.categories[i] >= state.yFrom && +spec.categories[i] <= state.yTo);
+  }
+  const mode = state.mode[spec.id] || spec.unit;
+  const useCount = mode === "count" && spec.hasCounts;
+  const hidden = state.hidden[spec.id] || {};
+  const series = spec.series.map(s => ({
+    name: s.name, color: colorFor(spec, s.name), visible: !hidden[s.name],
+    values: idx.map(i => useCount && s.count ? s.count[i] : s.value[i]),
+    pct: idx.map(i => spec.unit === "pct" ? s.value[i] : null),
+    count: idx.map(i => s.count ? s.count[i] : (spec.unit === "count" ? s.value[i] : null)),
+    sden: spec.sdenom ? spec.sdenom[s.name] : null
+  }));
+  return {
+    cats: idx.map(i => spec.categories[i]),
+    denom: spec.denom ? idx.map(i => spec.denom[i]) : null,
+    series, vis: series.filter(s => s.visible),
+    isPct: !useCount && spec.unit === "pct"
+  };
+}
+
+// ---------- tooltip ----------
+function showTip(card, spec, v, ci, s, x, y){
+  const tip = card.querySelector(".tip");
+  tip.textContent = "";
+  const head = el("div", {class:"th"}, tip);
+  const key = el("span", {class:"tk"}, head); key.style.background = s.color;
+  el("span", null, head, s.name);
+  const notes = spec.codeNotes || {};
+  if (notes[s.name]) el("div", {class:"d"}, tip, notes[s.name]);
+  el("div", {class:"d"}, tip, (spec.catLabel ? spec.catLabel + " " : "") + v.cats[ci] + (notes[v.cats[ci]] ? " (" + notes[v.cats[ci]] + ")" : ""));
+  const pct = s.pct[ci], cnt = s.count[ci], val = s.values[ci];
+  el("div", {class:"big"}, tip, v.isPct ? fmtPct(val) : fmtInt(val));
+  const den = s.sden != null ? s.sden : (v.denom ? v.denom[ci] : null);
+  const lines = [];
+  if (v.isPct && cnt != null) lines.push(fmtInt(cnt) + (den != null ? " of " + fmtInt(den) + " " + (spec.denomLabel || "") : ""));
+  else if (!v.isPct && pct != null) lines.push(fmtPct(pct) + (den != null ? " of " + fmtInt(den) + " " + (spec.denomLabel || "") : ""));
+  else if (den != null && spec.unit === "count") lines.push("Total: " + fmtInt(den) + " " + (spec.denomLabel || ""));
+  if (spec.isYear && ci > 0 && s.values[0] != null && val != null){
+    const base = s.values[0];
+    const dd = Math.round((val-base)*10)/10;
+    if (v.isPct) lines.push((dd === 0 ? "No change" : (dd > 0 ? "▲ +" : "▼ ") + dd.toFixed(1) + " pts") + " since " + v.cats[0] + " (" + fmtPct(base) + ")");
+    else if (base) { const ch = val/base*100-100; lines.push((ch >= 0 ? "▲ +" : "▼ ") + ch.toFixed(1) + "% since " + v.cats[0] + " (" + fmtInt(base) + ")"); }
+  }
+  if (spec.isYear && ci > 0 && s.values[ci-1] != null && val != null && ci-1 > 0){
+    const prev = s.values[ci-1];
+    if (v.isPct) lines.push("vs " + v.cats[ci-1] + ": " + (val-prev >= 0 ? "+" : "") + (val-prev).toFixed(1) + " pts");
+    else if (prev) lines.push("vs " + v.cats[ci-1] + ": " + (val/prev*100-100 >= 0 ? "+" : "") + (val/prev*100-100).toFixed(1) + "%");
+  }
+  if (spec.kind === "stacked" || spec.kind === "grouped"){
+    const ranked = v.vis.filter(o => o.values[ci] != null).sort((a,b) => b.values[ci] - a.values[ci]);
+    const r = ranked.indexOf(s) + 1;
+    if (r > 0) lines.push("Rank " + r + " of " + ranked.length + " in " + v.cats[ci]);
+  }
+  lines.forEach(t => el("div", {class:"ln"}, tip, t));
+  tip.style.display = "block";
+  const box = card.querySelector(".chart").getBoundingClientRect();
+  const tw = tip.offsetWidth, th = tip.offsetHeight;
+  let left = x + 16; if (left + tw > box.width) left = x - tw - 16; if (left < 0) left = 4;
+  let top = y - th - 10; if (top < -30) top = y + 16;
+  tip.style.left = left + "px"; tip.style.top = (top + card.querySelector(".chart").offsetTop) + "px";
+}
+function hideTip(card){ card.querySelector(".tip").style.display = "none"; }
+
+// rounded data-end path for a bar (only the end away from the baseline is rounded)
+function barPath(x, y, w, h, r, dir){
+  r = Math.max(0, Math.min(r, w/2, h/2));
+  if (h <= 0 || w <= 0) return "";
+  if (dir === "up") return `M${x},${y+h}V${y+r}Q${x},${y} ${x+r},${y}H${x+w-r}Q${x+w},${y} ${x+w},${y+r}V${y+h}Z`;
+  // right
+  return `M${x},${y}H${x+w-r}Q${x+w},${y} ${x+w},${y+r}V${y+h-r}Q${x+w},${y+h} ${x+w-r},${y+h}H${x}Z`;
+}
+
+// ---------- renderer ----------
+function render(card, spec){
+  const holder = card.querySelector(".chart");
+  holder.querySelectorAll("svg,.empty").forEach(n => n.remove());
+  const v = view(spec);
+  if (!v.cats.length || !v.vis.length){ el("div",{class:"empty"},holder,"No data for the current filters."); return; }
+  const W = Math.max(320, holder.clientWidth);
+  const horizontal = spec.kind === "barh" || spec.kind === "dot";
+  const maxLab = Math.max(...v.cats.map(c => String(c).length));
+  const m = {t:12, r: spec.kind === "stacked" ? 118 : 16, b:28, l: horizontal ? Math.min(210, 14 + maxLab*6.6) : 54};
+  const H = spec.kind === "dot" ? m.t + m.b + v.cats.length * 36 : horizontal ? m.t + m.b + v.cats.length * Math.max(18, 10 + 9*v.vis.length) : (spec.height || 300);
+  const iw = W - m.l - m.r, ih = H - m.t - m.b;
+  const svg = sv("svg", {viewBox:`0 0 ${W} ${H}`, role:"img", "aria-label":spec.title}, holder);
+  const surface = "var(--surface-1)";
+
+  // value extent
+  let max = 0;
+  if (spec.kind === "stacked"){
+    v.cats.forEach((c,i) => { let s=0; v.vis.forEach(se => s += (se.values[i]||0)); max = Math.max(max, s); });
+    if (v.isPct) max = Math.max(max, 100);
+  } else v.vis.forEach(se => se.values.forEach(x => { if (x != null) max = Math.max(max, x); }));
+  if (spec.kind === "stacked" && v.isPct && max < 100.5) max = 100;
+  if (spec.kind === "line") max *= 1.06;
+  const step = niceMax(max / 5);
+  max = Math.max(step, Math.ceil(max / step - 1e-9) * step);
+  const tk = ticks(max, 5);
+  const fmtTick = t => v.isPct ? t + "%" : (t >= 1000 ? (t/1000) + "k" : t);
+
+  const g = sv("g", {transform:`translate(${m.l},${m.t})`}, svg);
+  const band = sv("rect", {fill:"var(--band)", visibility:"hidden"}, g);
+  // grid + value axis
+  tk.forEach(t => {
+    if (horizontal){
+      const x = iw * t / max;
+      sv("line",{x1:x,x2:x,y1:0,y2:ih,stroke:"var(--grid)"},g);
+      const tx = sv("text",{x:x,y:ih+16,"text-anchor":"middle"},g); tx.textContent = fmtTick(t);
+    } else {
+      const y = ih - ih * t / max;
+      sv("line",{x1:0,x2:iw,y1:y,y2:y,stroke:"var(--grid)"},g);
+      const tx = sv("text",{x:-8,y:y+4,"text-anchor":"end"},g); tx.textContent = fmtTick(t);
+    }
+  });
+  if (horizontal) sv("line",{x1:0,x2:0,y1:0,y2:ih,stroke:"var(--axis)"},g);
+  else sv("line",{x1:0,x2:iw,y1:ih,y2:ih,stroke:"var(--axis)"},g);
+
+  const n = v.cats.length;
+  const bw = (horizontal ? ih : iw) / n;
+  const marks = sv("g", null, g);
+  const hits = [];   // {el, i, s, kind}
+  const focus = spec.focus || null;
+  const tint = (s) => (focus && s.name !== focus && (spec.kind === "stacked" || spec.kind === "grouped")) ? .5 : 1;
+  const addMark = (node, i, s, kind) => { hits.push({el:node, i, s, kind: kind || "bar"}); return node; };
+  // category labels
+  const every = horizontal ? 1 : Math.ceil(n / Math.max(1, Math.floor(iw / (maxLab*6.1 + 6))));
+  v.cats.forEach((c,i) => {
+    if (i % every) return;
+    if (horizontal){ const t = sv("text",{x:-8,y:i*bw+bw/2+4,"text-anchor":"end"},g); t.textContent = c; }
+    else { const t = sv("text",{x:i*bw+bw/2,y:ih+16,"text-anchor":"middle"},g); t.textContent = c; }
+  });
+
+  if (spec.kind === "stacked"){
+    const w = Math.min(48, bw*0.7);
+    v.cats.forEach((c,i) => {
+      let acc = 0;
+      const topIdx = (()=>{ let k=-1; v.vis.forEach((s,j)=>{ if ((s.values[i]||0) > 0) k=j; }); return k; })();
+      v.vis.forEach((s,j) => {
+        const val = s.values[i] || 0; if (val <= 0) return;
+        const y0 = ih - ih*acc/max, y1 = ih - ih*(acc+val)/max; acc += val;
+        const x = i*bw + (bw-w)/2;
+        addMark(sv("path",{d: j===topIdx ? barPath(x,y1,w,y0-y1,4,"up") : `M${x},${y1}h${w}v${y0-y1}h${-w}Z`,
+          fill:s.color, class: tint(s) < 1 ? "tinted" : "", stroke:surface, "stroke-width":1.5, "paint-order":"stroke"}, marks), i, s);
+        // value label inside the slice when it fits
+        if (y0 - y1 >= 15 && w >= 22){
+          const t = sv("text",{x:x+w/2, y:(y0+y1)/2+4, "text-anchor":"middle", class:"inlab" + (tint(s) === 1 ? " on" : "")}, marks);
+          t.textContent = v.isPct ? Math.round(val) + "%" : fmtInt(val);
+        }
+        // series name to the right of the last bar
+        if (i === v.cats.length - 1 && y0 - y1 >= 11){
+          const t = sv("text",{x:x+w+8, y:(y0+y1)/2+4, class:"endlab"}, marks); t.textContent = s.name;
+        }
+      });
+    });
+  } else if (spec.kind === "grouped" || spec.kind === "barh"){
+    const k = v.vis.length, inner = bw*0.78, sw = Math.max(2, inner/k - 2);
+    v.cats.forEach((c,i) => v.vis.forEach((s,j) => {
+      const val = s.values[i]; if (val == null || val <= 0) return;
+      const off = i*bw + (bw-inner)/2 + j*(inner/k) + 1;
+      if (horizontal){
+        const w = iw*val/max;
+        addMark(sv("path",{d:barPath(0,off,Math.max(w,1),sw,4,"right"),fill:s.color},marks), i, s);
+        if (k === 1){ const t = sv("text",{x:w+5,y:off+sw/2+4},marks); t.textContent = v.isPct ? fmtPct(val) : fmtInt(val); }
+      } else {
+        const h = ih*val/max;
+        addMark(sv("path",{d:barPath(off,ih-Math.max(h,1),sw,Math.max(h,1),Math.min(4,sw/2),"up"),fill:s.color,class: tint(s) < 1 ? "tinted" : ""},marks), i, s);
+      }
+    }));
+  } else if (spec.kind === "dot"){
+    v.cats.forEach((c,i) => {
+      const cy = i*bw + bw/2;
+      const vals = v.vis.map(s => s.values[i]).filter(x => x != null);
+      if (vals.length > 1){
+        const lo = Math.min(...vals), hi = Math.max(...vals);
+        sv("line",{x1:iw*lo/max, x2:iw*hi/max, y1:cy, y2:cy, stroke:"var(--axis)", "stroke-width":3, "stroke-linecap":"round", opacity:.45}, marks);
+      }
+      v.vis.forEach(s => { const val = s.values[i]; if (val == null) return;
+        const h = addMark(sv("circle",{cx:iw*val/max, cy, r:6.5, fill:s.color, stroke:surface, "stroke-width":2}, marks), i, s, "point");
+        hits[hits.length-1].r0 = 6.5; });
+    });
+  } else if (spec.kind === "line"){
+    v.vis.forEach(s => {
+      let d = "", pen = false;
+      s.values.forEach((val,i) => {
+        if (val == null){ pen = false; return; }
+        const x = i*bw + bw/2, y = ih - ih*val/max;
+        d += (pen ? "L" : "M") + x + "," + y; pen = true;
+      });
+      const line = sv("path",{d, fill:"none", stroke:s.color, "stroke-width":2, "stroke-linejoin":"round","stroke-linecap":"round"}, marks);
+      line.dataset.series = s.name;
+      s.values.forEach((val,i) => { if (val == null) return;
+        const c = addMark(sv("circle",{cx:i*bw+bw/2, cy:ih-ih*val/max, r:3.5, fill:s.color, stroke:surface, "stroke-width":2}, marks), i, s, "point");
+        c.dataset.series = s.name; });
+    });
+    // direct value labels at line ends (<= 4 series), nudged apart so they never collide
+    if (v.vis.length <= 4){
+      const ends = [];
+      v.vis.forEach(s => { let li = s.values.length-1; while (li >= 0 && s.values[li] == null) li--;
+        if (li >= 0) ends.push({x:li*bw+bw/2+8, y:ih-ih*s.values[li]/max+4, val:s.values[li]}); });
+      ends.sort((a,b) => a.y - b.y);
+      for (let i = 1; i < ends.length; i++) if (ends[i].y - ends[i-1].y < 13) ends[i].y = ends[i-1].y + 13;
+      ends.forEach(e => { const t = sv("text",{x:e.x, y:e.y, class:"ylab"}, marks); t.textContent = v.isPct ? fmtPct(e.val) : fmtInt(e.val); });
+    }
+  }
+  if (spec.ylabel){
+    const t = horizontal ? sv("text",{x:iw/2,y:ih+27,"text-anchor":"middle",class:"ylab"},g)
+                         : sv("text",{transform:`translate(${-42},${ih/2}) rotate(-90)`,"text-anchor":"middle",class:"ylab"},g);
+    t.textContent = spec.ylabel;
+    if (horizontal) svg.setAttribute("viewBox",`0 0 ${W} ${H+10}`);
+  }
+  // hit layer: one invisible target per mark (slightly bigger than the mark so thin slices are reachable)
+  const hitLayer = sv("g", null, g);
+  const lines = [...marks.querySelectorAll("path[data-series]")];
+  const clear = () => {
+    hits.forEach(h => { h.el.style.opacity = ""; h.el.style.fillOpacity = ""; if (h.kind === "point") h.el.setAttribute("r", h.r0 || 3.5); });
+    lines.forEach(l => l.style.opacity = "");
+    band.setAttribute("visibility","hidden"); hideTip(card);
+  };
+  hits.forEach(h => {
+    let t;
+    if (h.kind === "point"){
+      t = sv("circle",{cx:h.el.getAttribute("cx"), cy:h.el.getAttribute("cy"), r:11, fill:"transparent"}, hitLayer);
+    } else {
+      t = sv("path",{d:h.el.getAttribute("d"), fill:"transparent", stroke:"transparent", "stroke-width":6}, hitLayer);
+    }
+    t.setAttribute("tabindex", 0);
+    t.setAttribute("aria-label", h.s.name + ", " + v.cats[h.i]);
+    t.style.cursor = "pointer";
+    const on = (ev) => {
+      hits.forEach(o => { o.el.style.opacity = o === h ? "1" : (h.kind === "point" && o.s === h.s && spec.kind === "line" ? "1" : ".25"); });
+      h.el.style.fillOpacity = "1";
+      lines.forEach(l => l.style.opacity = l.dataset.series === h.s.name ? "1" : ".2");
+      if (h.kind === "point") h.el.setAttribute("r", (h.r0 || 3.5) + 2);
+      const hb = holder.getBoundingClientRect();
+      let px, py;
+      if (ev && ev.clientX != null){ px = ev.clientX - hb.left; py = ev.clientY - hb.top; }
+      else { const bb = h.el.getBoundingClientRect(); px = bb.left - hb.left + bb.width; py = bb.top - hb.top + bb.height/2; }
+      showTip(card, spec, v, h.i, h.s, px, py);
+    };
+    t.addEventListener("pointermove", on); t.addEventListener("focus", on);
+    t.addEventListener("pointerleave", clear); t.addEventListener("blur", clear);
+  });
+}
+
+// ---------- table + csv ----------
+function tableRows(spec){
+  const v = view(spec);
+  const head = [spec.catLabel || "Category"];
+  v.series.forEach(s => { head.push(s.name + (v.isPct ? " (%)" : "")); if (v.isPct && spec.hasCounts) head.push(s.name + " (count)"); });
+  if (v.denom) head.push("Denominator: " + (spec.denomLabel || "rows"));
+  const rows = v.cats.map((c,i) => {
+    const r = [c];
+    v.series.forEach(s => { r.push(s.values[i]); if (v.isPct && spec.hasCounts) r.push(s.count[i]); });
+    if (v.denom) r.push(v.denom[i]);
+    return r;
+  });
+  return {head, rows, isPct:v.isPct};
+}
+function renderTable(card, spec){
+  const wrap = card.querySelector(".tablewrap"); wrap.textContent = "";
+  const {head, rows} = tableRows(spec);
+  const t = el("table", null, wrap); const tr = el("tr", null, el("thead", null, t));
+  head.forEach(h => el("th", {scope:"col"}, tr, h));
+  const tb = el("tbody", null, t);
+  rows.forEach(r => { const row = el("tr", null, tb); r.forEach((x,j) => {
+    const isP = /\(%\)$/.test(head[j]);
+    el(j ? "td" : "th", j ? null : {scope:"row"}, row, j === 0 ? x : (x == null ? "–" : isP ? x.toFixed(1) : (Number.isInteger(x) ? x.toLocaleString() : (+x).toFixed(1))));
+  }); });
+}
+function downloadCSV(spec){
+  const {head, rows} = tableRows(spec);
+  const q = x => { const s = x == null ? "" : String(x); return /[",\n]/.test(s) ? '"' + s.replace(/"/g,'""') + '"' : s; };
+  const text = [head, ...rows].map(r => r.map(q).join(",")).join("\n");
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([text], {type:"text/csv"}));
+  a.download = spec.id + ".csv"; document.body.appendChild(a); a.click(); a.remove();
+}
+
+// ---------- legend ----------
+function renderLegend(card, spec){
+  const lg = card.querySelector(".legend"); lg.textContent = "";
+  if (spec.series.length < 2) return;
+  const hidden = state.hidden[spec.id] = state.hidden[spec.id] || {};
+  spec.series.forEach(s => {
+    const b = el("button", {type:"button", "aria-pressed": String(!hidden[s.name]), title:"Click to show/hide · double-click to isolate"}, lg);
+    const k = el("span", {class:"key" + (spec.kind === "line" ? " line" : "")}, b); k.style.background = colorFor(spec, s.name);
+    el("span", null, b, s.name);
+    let timer = null;
+    b.addEventListener("click", () => { clearTimeout(timer); timer = setTimeout(() => { hidden[s.name] = !hidden[s.name]; refresh(card, spec); }, 200); });
+    b.addEventListener("dblclick", () => { clearTimeout(timer);
+      const only = spec.series.every(o => o.name === s.name ? !hidden[o.name] : hidden[o.name]);
+      spec.series.forEach(o => hidden[o.name] = only ? false : o.name !== s.name); refresh(card, spec); });
+  });
+}
+function refresh(card, spec){
+  renderLegend(card, spec); render(card, spec);
+  if (state.table[spec.id]) renderTable(card, spec);
+}
+
+
+// ---------- single chart (Streamlit widget) ----------
+const cards = [];
+function buildOne(){
+  const spec = DATA.spec;
+  if (DATA.yFrom != null){ state.yFrom = DATA.yFrom; state.yTo = DATA.yTo; }
+  if (DATA.hidden) state.hidden[spec.id] = Object.fromEntries(DATA.hidden.map(n => [n, true]));
+  const host = document.getElementById("host");
+  const c = el("div",{class:"card"},host);
+  const head = el("div",{class:"cardhead"},c);
+  const t = el("div",null,head); el("h3",null,t,spec.title); if (spec.meta) el("div",{class:"meta"},t,spec.meta);
+  if (spec.unit === "pct" && spec.hasCounts){
+    const seg = el("div",{class:"seg",role:"group","aria-label":"Measure"},head);
+    [["pct","Percent"],["count","Count"]].forEach(([m,l]) => {
+      const b = el("button",{type:"button","data-m":m,"aria-pressed":String(m==="pct")},seg,l);
+      b.addEventListener("click",()=>{ state.mode[spec.id]=m; seg.querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",String(x===b))); refresh(c,spec); fit(); });
+    });
+  }
+  el("div",{class:"legend"},c);
+  el("div",{class:"chart"},c);
+  el("div",{class:"tip",role:"status"},c);
+  const tools = el("div",{class:"tools"},c);
+  el("span",{style:"font-size:12px;color:var(--text-muted)"},tools,"Point at a color for details · click legend to hide, double-click to isolate");
+  const tbtn = el("button",{type:"button"},tools,"Show table");
+  tbtn.addEventListener("click",()=>{ state.table[spec.id] = !state.table[spec.id];
+    c.querySelector(".tablewrap").classList.toggle("open", state.table[spec.id]);
+    tbtn.textContent = state.table[spec.id] ? "Hide table" : "Show table"; if (state.table[spec.id]) renderTable(c,spec); fit(); });
+  el("div",{class:"tablewrap"},c);
+  cards.push([c,spec]);
+  refresh(c,spec);
+  let rt; addEventListener("resize",()=>{ clearTimeout(rt); rt=setTimeout(()=>render(c,spec),120); });
+}
+// let Streamlit know the content height when it changes (table toggle etc.)
+function fit(){
+  const h = document.documentElement.scrollHeight;
+  try { window.parent.postMessage({isStreamlitMessage:true, type:"streamlit:setFrameHeight", height:h}, "*"); } catch(e){}
+}
+buildOne();
+setTimeout(fit, 50);
+})();
+</script></body></html>

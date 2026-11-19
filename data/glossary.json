@@ -1,0 +1,1054 @@
+{
+ "crime_codes": {
+  "AAOS": {
+   "rows": 80,
+   "top_charges": [
+    "Accost/Annoy Person Of Opposite Sex (50%)",
+    "Disorderly Conduct (11%)",
+    "A&B (8%)"
+   ]
+  },
+  "ABOV": {
+   "rows": 420,
+   "top_charges": [
+    "A&B On +60/Disabled (35%)",
+    "A&B On +60/Disabled With Injury (18%)",
+    "A&B (9%)"
+   ]
+  },
+  "ABUR": {
+   "rows": 61,
+   "top_charges": [
+    "Burglary, Armed (18%)",
+    "Conspiracy (10%)",
+    "Assault In Dwelling, Armed (10%)"
+   ]
+  },
+  "ACAF": {
+   "rows": 72,
+   "top_charges": [
+    "Accessory After The Fact (79%)",
+    "Witness, Intimidate (4%)",
+    "Firearm, Carry Without License (4%)"
+   ]
+  },
+  "ACBE": {
+   "rows": 19,
+   "top_charges": [
+    "Accessory Before The Fact (37%)",
+    "Accessory After The Fact (21%)",
+    "Conspiracy (16%)"
+   ]
+  },
+  "ANIM": {
+   "rows": 3,
+   "top_charges": [
+    "Animal, Sexual Contact With (67%)",
+    "Animal, Cruelty To (33%)"
+   ]
+  },
+  "ANNY": {
+   "rows": 4,
+   "top_charges": [
+    "Telephone Calls, Annoying (50%)",
+    "Destruction Of Property -$250, Malicious (25%)",
+    "Harassment, Criminal (25%)"
+   ]
+  },
+  "ANPH": {
+   "rows": 39,
+   "top_charges": [
+    "Telephone Calls, Annoying (51%)",
+    "Accost/Annoy Person Of Opposite Sex (21%)",
+    "Telephone Calls, Obscene (10%)"
+   ]
+  },
+  "ARAS": {
+   "rows": 105,
+   "top_charges": [
+    "Assault To Murder, Armed (12%)",
+    "A&B With Dangerous Weapon Causing Serious Bodily Injury (10%)",
+    "Assault W/Dangerous Weapon (9%)"
+   ]
+  },
+  "ARMA": {
+   "rows": 225,
+   "top_charges": [
+    "Assault To Murder, Armed (20%)",
+    "A&B With Dangerous Weapon (16%)",
+    "Conspiracy (5%)"
+   ]
+  },
+  "AROB": {
+   "rows": 1149,
+   "top_charges": [
+    "Robbery, Armed (21%)",
+    "Robbery, Armed & Masked (10%)",
+    "Assault W/Dangerous Weapon (9%)"
+   ]
+  },
+  "ARSO": {
+   "rows": 84,
+   "top_charges": [
+    "Arson Of Dwelling House (27%)",
+    "Destruction Of Property -$1200, Malicious (7%)",
+    "Destruction Of Property +$1200, Malicious (6%)"
+   ]
+  },
+  "ASBA": {
+   "rows": 11493,
+   "top_charges": [
+    "A&B On Family / Household Member (39%)",
+    "A&B (12%)",
+    "A&B With Dangerous Weapon (8%)"
+   ]
+  },
+  "ASCO": {
+   "rows": 71,
+   "top_charges": [
+    "A&B On Correctional Facility Employee (39%)",
+    "A&B With Bodily Substance On Correctional Facility Employee (24%)",
+    "A&B On Correctional Officer (11%)"
+   ]
+  },
+  "ASDW": {
+   "rows": 2881,
+   "top_charges": [
+    "Assault W/Dangerous Weapon (31%)",
+    "A&B With Dangerous Weapon (12%)",
+    "A&B (6%)"
+   ]
+  },
+  "ASS": {
+   "rows": 2,
+   "top_charges": [
+    "Civil Rights Violation (50%)",
+    "Assault (50%)"
+   ]
+  },
+  "ASSA": {
+   "rows": 2144,
+   "top_charges": [
+    "A&B (13%)",
+    "Assault (10%)",
+    "A&B With Dangerous Weapon (10%)"
+   ]
+  },
+  "ASSB": {
+   "rows": 4437,
+   "top_charges": [
+    "A&B (33%)",
+    "A&B On Police Officer (12%)",
+    "Disorderly Conduct (8%)"
+   ]
+  },
+  "ASSF": {
+   "rows": 38,
+   "top_charges": [
+    "Assault To Murder, Firearm-Armed (16%)",
+    "Vandalize Property (8%)",
+    "A&B With Dangerous Weapon (5%)"
+   ]
+  },
+  "ASSL": {
+   "rows": 7613,
+   "top_charges": [
+    "A&B On Family / Household Member (33%)",
+    "A&B (11%)",
+    "A&B With Dangerous Weapon (10%)"
+   ]
+  },
+  "ASSW": {
+   "rows": 1742,
+   "top_charges": [
+    "A&B With Dangerous Weapon (36%)",
+    "A&B (9%)",
+    "Assault W/Dangerous Weapon (7%)"
+   ]
+  },
+  "ATMU": {
+   "rows": 366,
+   "top_charges": [
+    "A&B With Dangerous Weapon (11%)",
+    "Assault To Murder, Armed (7%)",
+    "Murder, Attempted (6%)"
+   ]
+  },
+  "ATTC": {
+   "rows": 464,
+   "top_charges": [
+    "Attempt To Commit Crime (50%)",
+    "Trespass (4%)",
+    "Conspiracy (3%)"
+   ]
+  },
+  "ATTM": {
+   "rows": 390,
+   "top_charges": [
+    "A&B On Family / Household Member (13%)",
+    "A&B With Dangerous Weapon (12%)",
+    "Murder, Attempted (9%)"
+   ]
+  },
+  "BANE": {
+   "rows": 410,
+   "top_charges": [
+    "B&E Nighttime For Felony (12%)",
+    "B&E Daytime For Felony (9%)",
+    "Vandalize Property (8%)"
+   ]
+  },
+  "BREN": {
+   "rows": 4779,
+   "top_charges": [
+    "B&E Nighttime For Felony (12%)",
+    "B&E Vehicle/Boat Nighttime For Felony (10%)",
+    "B&E Daytime For Felony (8%)"
+   ]
+  },
+  "CADW": {
+   "rows": 431,
+   "top_charges": [
+    "Dangerous Weapon, Carry (31%)",
+    "License Suspended, Op Mv With (3%)",
+    "Assault Weapon, Sell/Possess (3%)"
+   ]
+  },
+  "CARJ": {
+   "rows": 51,
+   "top_charges": [
+    "Assault W/Dangerous Weapon (14%)",
+    "Carjacking, Armed (12%)",
+    "A&B With Dangerous Weapon (8%)"
+   ]
+  },
+  "CDEL": {
+   "rows": 2,
+   "top_charges": [
+    "Witness, Intimidate (50%)",
+    "Contribute To Delinquency Of Child (50%)"
+   ]
+  },
+  "CHAB": {
+   "rows": 66,
+   "top_charges": [
+    "A&B On Child With Injury (27%)",
+    "A&B (23%)",
+    "A&B With Dangerous Weapon (11%)"
+   ]
+  },
+  "CLSD": {
+   "rows": 82,
+   "top_charges": [
+    "Drug, Possess To Distrib Class D (21%)",
+    "Drug, Distribute Class D (11%)",
+    "License Suspended, Op Mv With (5%)"
+   ]
+  },
+  "CONS": {
+   "rows": 904,
+   "top_charges": [
+    "Conspiracy (36%)",
+    "Conspiracy To Violate Drug Law (11%)",
+    "Larceny Under $1200 (4%)"
+   ]
+  },
+  "CRCA": {
+   "rows": 637,
+   "top_charges": [
+    "Credit Card Fraud Under $250 (13%)",
+    "Credit Card Fraud Over $250 By Merchant (12%)",
+    "Credit Card, Improper Use Under $250 (11%)"
+   ]
+  },
+  "CTAN": {
+   "rows": 325,
+   "top_charges": [
+    "Animal, Cruelty To (54%)",
+    "Animal, Cruelty To By Custodian (26%)",
+    "Dog Tethering/Confining Violation (3%)"
+   ]
+  },
+  "DEPR": {
+   "rows": 17,
+   "top_charges": [
+    "Vandalize Property (29%)",
+    "Destruction Of Property -$250, Malicious (12%)",
+    "Destruction Of Property -$1200, Malicious (12%)"
+   ]
+  },
+  "DEST": {
+   "rows": 292,
+   "top_charges": [
+    "Vandalize Property (19%)",
+    "Motor Veh, Malicious Damage To (16%)",
+    "Destruction Of Property +$250, Malicious (9%)"
+   ]
+  },
+  "DISA": {
+   "rows": 13,
+   "top_charges": [
+    "Elder/Disabled, Permit Abuse On (23%)",
+    "Elder/Disabled, Permit Injury To (15%)",
+    "A&B On +60/Disabled With Injury (15%)"
+   ]
+  },
+  "DISO": {
+   "rows": 1847,
+   "top_charges": [
+    "Disorderly Conduct (51%)",
+    "Resist Arrest (12%)",
+    "Disturbing The Peace (7%)"
+   ]
+  },
+  "DIST": {
+   "rows": 241,
+   "top_charges": [
+    "Disturbing The Peace (54%)",
+    "Resist Arrest (7%)",
+    "Disorderly Conduct (5%)"
+   ]
+  },
+  "DOBM": {
+   "rows": 69,
+   "top_charges": [
+    "Obscene Matter, Distribute (38%)",
+    "Obscene Matter To Minor (16%)",
+    "Harassment, Criminal (7%)"
+   ]
+  },
+  "DOGL": {
+   "rows": 241,
+   "top_charges": [
+    "Dog, Fail License (72%)",
+    "Dog/Cat Rabies Vaccination Violation (10%)",
+    "Dog Ordinance/By-Law Violation (5%)"
+   ]
+  },
+  "DPRO": {
+   "rows": 781,
+   "top_charges": [
+    "Destruction Of Property +$1200, Malicious (14%)",
+    "Destruction Of Property -$1200, Malicious (14%)",
+    "Destruction Of Property +$250, Malicious (12%)"
+   ]
+  },
+  "ELAB": {
+   "rows": 49,
+   "top_charges": [
+    "A&B On +60/Disabled (20%)",
+    "Elder/Disabled, Permit Abuse On (12%)",
+    "Elder/Disabled, Permit Injury To (12%)"
+   ]
+  },
+  "EMBE": {
+   "rows": 21,
+   "top_charges": [
+    "Fiduciary, Embezzlement/Misapplicatn By (24%)",
+    "Larceny Over $250 (14%)",
+    "Association Officer Embezzle +$250 (5%)"
+   ]
+  },
+  "ENMI": {
+   "rows": 63,
+   "top_charges": [
+    "Entice Child Under 16 (40%)",
+    "Accost/Annoy Person Of Opposite Sex (14%)",
+    "Obscene Matter To Minor (11%)"
+   ]
+  },
+  "ENVI": {
+   "rows": 39,
+   "top_charges": [
+    "Shellfish In Contaminated Area (21%)",
+    "Environmental Code, Violate State (18%)",
+    "Nuisance Regulation Violation, Health (15%)"
+   ]
+  },
+  "ESCA": {
+   "rows": 11,
+   "top_charges": [
+    "Escape From Penal Institution/Court (64%)",
+    "Larceny Over $250 (18%)",
+    "Escape From Penal Institution/Court, Att (9%)"
+   ]
+  },
+  "EXTO": {
+   "rows": 35,
+   "top_charges": [
+    "Extortion By Threat Of Injury (26%)",
+    "Attempted Extortion (26%)",
+    "Extortion By False Report Of Crime (11%)"
+   ]
+  },
+  "FAAP": {
+   "rows": 49,
+   "top_charges": [
+    "Dna Database Sample, Refuse Provide (61%)",
+    "Juror Fail To Attend (20%)",
+    "Recognizance, Fail Appear Upon (8%)"
+   ]
+  },
+  "FAIL": {
+   "rows": 197,
+   "top_charges": [
+    "Sex Offender Fail To Register (46%)",
+    "Sex Offender, Failure To Register; Level 2 Or 3 (22%)",
+    "Sex Offender Fail To Register, Subsq.Off. (10%)"
+   ]
+  },
+  "FIFA": {
+   "rows": 111,
+   "top_charges": [
+    "Crime Report, False (42%)",
+    "False/Silent 911 Call (16%)",
+    "Insurance Claim, False Motor Veh (8%)"
+   ]
+  },
+  "FIRE": {
+   "rows": 5667,
+   "top_charges": [
+    "Ammunition Without Fid Card, Possess (11%)",
+    "Firearm Without Fid Card, Possess (10%)",
+    "Firearm, Possess Large Capacity (8%)"
+   ]
+  },
+  "FORF": {
+   "rows": 4,
+   "top_charges": [
+    "Fentanyl, Trafficking In More Than 10 Grams C.94C, ?32E(C«) (25%)",
+    "Cocaine, Trafficking In (25%)",
+    "Drug, Possess To Distrib Class B (25%)"
+   ]
+  },
+  "FORG": {
+   "rows": 1707,
+   "top_charges": [
+    "Forgery Of Check (23%)",
+    "Utter False Check (19%)",
+    "Forgery Of Document (7%)"
+   ]
+  },
+  "FRUD": {
+   "rows": 1329,
+   "top_charges": [
+    "Identity Fraud (21%)",
+    "Credit Card Fraud Under $250 (10%)",
+    "Credit Card Fraud Over $250 (8%)"
+   ]
+  },
+  "FUFA": {
+   "rows": 31,
+   "top_charges": [
+    "False Name/Ssn, Arrestee Furnish (55%)",
+    "Shoplifting By Asportation (13%)",
+    "Unlicensed Operation Of Mv (10%)"
+   ]
+  },
+  "FUJU": {
+   "rows": 608,
+   "top_charges": [
+    "Fugitive From Justice On Court Warrant (83%)",
+    "Fugitive From Justice Without Warrant (6%)",
+    "Fugitive From Justice On Gov'S Warrant (4%)"
+   ]
+  },
+  "GAMB": {
+   "rows": 5,
+   "top_charges": [
+    "Noisy & Disorderly House, Keep (20%)",
+    "Gambling Nuisance, Maintain (20%)",
+    "Liquor Club, Unlicensed (20%)"
+   ]
+  },
+  "HACR": {
+   "rows": 4,
+   "top_charges": [
+    "Habitual Offender (100%)"
+   ]
+  },
+  "HARA": {
+   "rows": 634,
+   "top_charges": [
+    "Harrassment Prevention Order, Violate (59%)",
+    "Harassment, Criminal (24%)",
+    "Threat To Commit Crime (4%)"
+   ]
+  },
+  "HARR": {
+   "rows": 166,
+   "top_charges": [
+    "Harrassment Prevention Order, Violate (37%)",
+    "Harassment, Criminal (36%)",
+    "Abuse Prevention Order, Violate (4%)"
+   ]
+  },
+  "HINV": {
+   "rows": 574,
+   "top_charges": [
+    "Home Invasion (17%)",
+    "Assault In Dwelling, Armed (6%)",
+    "Assault W/Dangerous Weapon (6%)"
+   ]
+  },
+  "HOMI": {
+   "rows": 3,
+   "top_charges": [
+    "A&B, Serious Bodily Injury (67%)",
+    "Boat Homicide By Negligent Op (33%)"
+   ]
+  },
+  "INDE": {
+   "rows": 59,
+   "top_charges": [
+    "Indecent Exposure (49%)",
+    "Indecent A&B On Person 14 Or Over (8%)",
+    "Lewdness, Open And Gross (7%)"
+   ]
+  },
+  "INDM": {
+   "rows": 30,
+   "top_charges": [
+    "Indecent A&B On Retarded Person (40%)",
+    "A&B On Retarded Person (20%)",
+    "Indecent A&B On +60/Disabled (10%)"
+   ]
+  },
+  "INDO": {
+   "rows": 632,
+   "top_charges": [
+    "Indecent A&B On Person 14 Or Over (54%)",
+    "A&B (11%)",
+    "Accost/Annoy Person Of Opposite Sex (4%)"
+   ]
+  },
+  "INDU": {
+   "rows": 276,
+   "top_charges": [
+    "Indecent A&B On Child Under 14 (55%)",
+    "A&B (8%)",
+    "Witness, Intimidate (3%)"
+   ]
+  },
+  "INMI": {
+   "rows": 10,
+   "top_charges": [
+    "Witness, Intimidate (80%)",
+    "Disorderly Conduct (10%)",
+    "Shoplifting By Asportation (10%)"
+   ]
+  },
+  "INPO": {
+   "rows": 26,
+   "top_charges": [
+    "Police Officer, Interfere With (Common Law) (46%)",
+    "Municipal By-Law Or Ordinance Violation (19%)",
+    "Withhold Evidence From Criminal Proceeding (8%)"
+   ]
+  },
+  "INSD": {
+   "rows": 22,
+   "top_charges": [
+    "Indecent A&B On +60/Disabled (27%)",
+    "A&B On +60/Disabled (23%)",
+    "Indecent A&B On Person 14 Or Over (9%)"
+   ]
+  },
+  "INSF": {
+   "rows": 58,
+   "top_charges": [
+    "Insurance Claim, False Motor Veh (59%)",
+    "Insurance Claim, Present False (10%)",
+    "Attempt To Commit Crime (5%)"
+   ]
+  },
+  "INTF": {
+   "rows": 16,
+   "top_charges": [
+    "Disorderly Conduct (19%)",
+    "Firefighter, Interfere With (19%)",
+    "Firefighter, Injure (12%)"
+   ]
+  },
+  "INTI": {
+   "rows": 1239,
+   "top_charges": [
+    "Witness, Intimidate (48%)",
+    "Threat To Commit Crime (5%)",
+    "A&B On Family / Household Member (5%)"
+   ]
+  },
+  "IPOL": {
+   "rows": 16,
+   "top_charges": [
+    "Police Officer, Impersonate (56%)",
+    "Attempt To Commit Crime (6%)",
+    "Disguise To Obstruct Justice (6%)"
+   ]
+  },
+  "JUFA": {
+   "rows": 690,
+   "top_charges": [
+    "Juror Fail To Attend (99%)",
+    "Larceny From Building (0%)",
+    "License Suspended, Op Mv With (0%)"
+   ]
+  },
+  "KIDN": {
+   "rows": 878,
+   "top_charges": [
+    "Kidnapping (23%)",
+    "A&B On Family / Household Member (15%)",
+    "Witness, Intimidate (10%)"
+   ]
+  },
+  "LAMV": {
+   "rows": 9,
+   "top_charges": [
+    "Use Mv Without Authority (33%)",
+    "Motor Veh, Malicious Damage To (11%)",
+    "Vandalize Property (11%)"
+   ]
+  },
+  "LARC": {
+   "rows": 11719,
+   "top_charges": [
+    "Larceny Over $1200 (12%)",
+    "Larceny Under $1200 (12%)",
+    "Larceny Over $250 (10%)"
+   ]
+  },
+  "LEWD": {
+   "rows": 219,
+   "top_charges": [
+    "Lewd, Wanton & Lascivious Conduct (30%)",
+    "Lewdness, Open And Gross (28%)",
+    "Disorderly Conduct (4%)"
+   ]
+  },
+  "LIQU": {
+   "rows": 107,
+   "top_charges": [
+    "Liquor, Person Under 21 Possess (41%)",
+    "Liquor To Person Under 21, Sell/Deliver (21%)",
+    "Liquor Id Card/License, False/Misuse (7%)"
+   ]
+  },
+  "LSPI": {
+   "rows": 426,
+   "top_charges": [
+    "Leave Scene Of Personal Injury (33%)",
+    "Leave Scene Of Property Damage (12%)",
+    "Negligent Operation Of Motor Vehicle (10%)"
+   ]
+  },
+  "LSPR": {
+   "rows": 3088,
+   "top_charges": [
+    "Leave Scene Of Property Damage (50%)",
+    "Marked Lanes Violation (10%)",
+    "Negligent Operation Of Motor Vehicle (7%)"
+   ]
+  },
+  "MANS": {
+   "rows": 35,
+   "top_charges": [
+    "Manslaughter (40%)",
+    "Motor Veh Homicide By Negligent Op (14%)",
+    "Witness, Intimidate (11%)"
+   ]
+  },
+  "MAYH": {
+   "rows": 50,
+   "top_charges": [
+    "Mayhem (22%)",
+    "A&B (16%)",
+    "A&B With Dangerous Weapon (12%)"
+   ]
+  },
+  "MDPR": {
+   "rows": 697,
+   "top_charges": [
+    "Motor Veh, Malicious Damage To (29%)",
+    "Destruction Of Property -$1200, Malicious (13%)",
+    "Destruction Of Property +$1200, Malicious (10%)"
+   ]
+  },
+  "MISU": {
+   "rows": 18,
+   "top_charges": [
+    "Liquor Id Card/License, False/Misuse (17%)",
+    "License Suspended, Op Mv With (11%)",
+    "Home Improvement Contractor, Unlicensed (11%)"
+   ]
+  },
+  "MMUN": {
+   "rows": 709,
+   "top_charges": [
+    "Municipal By-Law Or Ordinance Violation (42%)",
+    "Miscellaneous Munic Ordinance/Bylaw Viol (24%)",
+    "State Sanitary Code Violation (5%)"
+   ]
+  },
+  "MMVE": {
+   "rows": 69689,
+   "top_charges": [
+    "License Suspended, Op Mv With (16%)",
+    "Unlicensed Operation Of Mv (13%)",
+    "Uninsured Motor Vehicle (11%)"
+   ]
+  },
+  "MURD": {
+   "rows": 250,
+   "top_charges": [
+    "Murder (24%)",
+    "Witness, Intimidate (7%)",
+    "Assault To Rob, Armed (6%)"
+   ]
+  },
+  "MVH": {
+   "rows": 150,
+   "top_charges": [
+    "Motor Veh Homicide By Negligent Op (16%)",
+    "Negligent Operation Of Motor Vehicle (8%)",
+    "Motor Veh Homicide Oui Liquor & Neglig (6%)"
+   ]
+  },
+  "MVHD": {
+   "rows": 41,
+   "top_charges": [
+    "A&B With Dangerous Weapon (22%)",
+    "Manslaughter While Oui (17%)",
+    "Oui¨Liquor & Serious Injury & Negligent (10%)"
+   ]
+  },
+  "MVHF": {
+   "rows": 75,
+   "top_charges": [
+    "Negligent Operation Of Motor Vehicle (15%)",
+    "Marked Lanes Violation (11%)",
+    "Motor Veh Homicide Oui Liquor & Neglig (11%)"
+   ]
+  },
+  "MVHL": {
+   "rows": 6,
+   "top_charges": [
+    "Witness, Intimidate (17%)",
+    "Leave Scene Of Personal Injury & Death (17%)",
+    "Withhold Evidence From Criminal Proceeding (17%)"
+   ]
+  },
+  "MVHM": {
+   "rows": 91,
+   "top_charges": [
+    "Motor Veh Homicide By Negligent Op (21%)",
+    "Marked Lanes Violation (14%)",
+    "Negligent Operation Of Motor Vehicle (12%)"
+   ]
+  },
+  "MVHO": {
+   "rows": 12,
+   "top_charges": [
+    "Oui¨Liquor & Serious Injury & Negligent (42%)",
+    "Negligent Operation Of Motor Vehicle (17%)",
+    "License Suspended, Op Mv With (8%)"
+   ]
+  },
+  "NARC": {
+   "rows": 16699,
+   "top_charges": [
+    "Drug, Possess Class B (11%)",
+    "Conspiracy To Violate Drug Law (7%)",
+    "Drug, Possess To Distrib Class B (6%)"
+   ]
+  },
+  "OBJU": {
+   "rows": 30,
+   "top_charges": [
+    "Oui¨Liquor (13%)",
+    "Disguise To Obstruct Justice (7%)",
+    "Obstruct Justice (Common Law) (7%)"
+   ]
+  },
+  "OPEN": {
+   "rows": 184,
+   "top_charges": [
+    "Lewdness, Open And Gross (61%)",
+    "Indecent Exposure (8%)",
+    "Disorderly Conduct (4%)"
+   ]
+  },
+  "OPGR": {
+   "rows": 106,
+   "top_charges": [
+    "Lewdness, Open And Gross (56%)",
+    "Indecent Exposure (8%)",
+    "Lewd, Wanton & Lascivious Conduct (8%)"
+   ]
+  },
+  "OTHR": {
+   "rows": 554,
+   "top_charges": [
+    "Dna Database Sample, Refuse Provide (24%)",
+    "A&B On Family / Household Member (3%)",
+    "Photograph Sexual Or Intimate Parts W/Out Consent (3%)"
+   ]
+  },
+  "OUIA": {
+   "rows": 20260,
+   "top_charges": [
+    "Oui¨Liquor (26%)",
+    "Negligent Operation Of Motor Vehicle (18%)",
+    "Marked Lanes Violation (14%)"
+   ]
+  },
+  "OUID": {
+   "rows": 3003,
+   "top_charges": [
+    "Oui¨Drugs (23%)",
+    "Negligent Operation Of Motor Vehicle (18%)",
+    "Marked Lanes Violation (11%)"
+   ]
+  },
+  "PASC": {
+   "rows": 10,
+   "top_charges": [
+    "Sexual Conduct For Fee (70%)",
+    "Prostitution, Maintain House Of (20%)",
+    "Sexual Conduct, Pay For (10%)"
+   ]
+  },
+  "PERJ": {
+   "rows": 8,
+   "top_charges": [
+    "Perjury (75%)",
+    "Witness, Intimidate (12%)",
+    "Crime Report, False (12%)"
+   ]
+  },
+  "PFIR": {
+   "rows": 2,
+   "top_charges": [
+    "Fireworks, Possess Unlawful (50%)",
+    "Disturbing The Peace (50%)"
+   ]
+  },
+  "POBU": {
+   "rows": 83,
+   "top_charges": [
+    "Burglarious Instrument, Possess (31%)",
+    "Conspiracy (14%)",
+    "Attempt To Commit Crime (12%)"
+   ]
+  },
+  "PORN": {
+   "rows": 500,
+   "top_charges": [
+    "Child Pornography, Possess (40%)",
+    "Photograph Sexual Or Intimate Parts W/Out Consent (9%)",
+    "Child In Nude, Lascivious Pose/Exhibit (8%)"
+   ]
+  },
+  "PROS": {
+   "rows": 69,
+   "top_charges": [
+    "Trafficking Of Person For Sexual Servitude C265 50(A) (16%)",
+    "Sexual Conduct For Fee (13%)",
+    "Prostitution, Maintain House Of (10%)"
+   ]
+  },
+  "PRRE": {
+   "rows": 4,
+   "top_charges": [
+    "Dna Database Sample, Refuse Provide (50%)",
+    "Sex Offender, Failure To Register; Level 2 Or 3 (25%)",
+    "False Name/Ssn, Arrestee Furnish (25%)"
+   ]
+  },
+  "RAPE": {
+   "rows": 2656,
+   "top_charges": [
+    "Rape (16%)",
+    "Indecent A&B On Child Under 14 (11%)",
+    "Indecent A&B On Person 14 Or Over (10%)"
+   ]
+  },
+  "RECS": {
+   "rows": 3092,
+   "top_charges": [
+    "Receive Stolen Property -$1200 (17%)",
+    "Receive Stolen Property +$1200 (11%)",
+    "Motor Veh, Receive Stolen (8%)"
+   ]
+  },
+  "REND": {
+   "rows": 417,
+   "top_charges": [
+    "Reckless Endangerment Of Child (45%)",
+    "Assault W/Dangerous Weapon (5%)",
+    "Negligent Operation Of Motor Vehicle (3%)"
+   ]
+  },
+  "RESA": {
+   "rows": 515,
+   "top_charges": [
+    "Resist Arrest (41%)",
+    "Disorderly Conduct (16%)",
+    "A&B On Police Officer (5%)"
+   ]
+  },
+  "SHOP": {
+   "rows": 6385,
+   "top_charges": [
+    "Shoplifting By Asportation (30%)",
+    "Shoplifting By Concealing Mdse (19%)",
+    "Shoplifting By Asportation, 3Rd Off. (8%)"
+   ]
+  },
+  "STAL": {
+   "rows": 112,
+   "top_charges": [
+    "Threat To Commit Crime (31%)",
+    "Stalking (25%)",
+    "Witness, Intimidate (11%)"
+   ]
+  },
+  "STAT": {
+   "rows": 277,
+   "top_charges": [
+    "Rape Of Child With Force (26%)",
+    "Aggravated Statutory Rape 265 ? 23A (16%)",
+    "Indecent A&B On Child Under 14 (14%)"
+   ]
+  },
+  "STLK": {
+   "rows": 162,
+   "top_charges": [
+    "Abuse Prevention Order, Violate (31%)",
+    "Stalking (20%)",
+    "Threat To Commit Crime (12%)"
+   ]
+  },
+  "STMV": {
+   "rows": 349,
+   "top_charges": [
+    "Motor Veh, Receive Stolen (22%)",
+    "Motor Veh, Larceny Of (11%)",
+    "Use Mv Without Authority (7%)"
+   ]
+  },
+  "STRA": {
+   "rows": 2880,
+   "top_charges": [
+    "Strangulation Or Suffocation (33%)",
+    "A&B On Family / Household Member (25%)",
+    "A&B (7%)"
+   ]
+  },
+  "THRT": {
+   "rows": 1148,
+   "top_charges": [
+    "Threat To Commit Crime (67%)",
+    "Witness, Intimidate (3%)",
+    "Bomb/Hijack Threat (3%)"
+   ]
+  },
+  "TRAF": {
+   "rows": 1568,
+   "top_charges": [
+    "Fentanyl, Trafficking In More Than 10 Grams C.94C, ?32E(C«) (9%)",
+    "Conspiracy To Violate Drug Law (8%)",
+    "Drug, Possess To Distrib Class B (6%)"
+   ]
+  },
+  "TRES": {
+   "rows": 1145,
+   "top_charges": [
+    "Trespass (68%)",
+    "Disorderly Conduct (7%)",
+    "Disturbing The Peace (3%)"
+   ]
+  },
+  "UBUR": {
+   "rows": 217,
+   "top_charges": [
+    "Burglary, Unarmed (28%)",
+    "Larceny From Building (9%)",
+    "Vandalize Property (8%)"
+   ]
+  },
+  "UFPR": {
+   "rows": 45,
+   "top_charges": [
+    "Prescription, Utter False (58%)",
+    "Identity Fraud (9%)",
+    "Receive Stolen Property -$250 (7%)"
+   ]
+  },
+  "UROB": {
+   "rows": 565,
+   "top_charges": [
+    "Robbery, Unarmed (35%)",
+    "A&B (11%)",
+    "A&B With Dangerous Weapon (5%)"
+   ]
+  },
+  "UTFA": {
+   "rows": 828,
+   "top_charges": [
+    "Utter False Check (35%)",
+    "Forgery Of Check (14%)",
+    "Utter Counterfeit Note (7%)"
+   ]
+  },
+  "VAND": {
+   "rows": 1042,
+   "top_charges": [
+    "Vandalize Property (55%)",
+    "Disorderly Conduct (3%)",
+    "Disturbing The Peace (3%)"
+   ]
+  },
+  "VHPO": {
+   "rows": 432,
+   "top_charges": [
+    "Harrassment Prevention Order, Violate (67%)",
+    "Abuse Prevention Order, Violate (22%)",
+    "Threat To Commit Crime (2%)"
+   ]
+  },
+  "VIO": {
+   "rows": 36,
+   "top_charges": [
+    "Civil Rights Violation (47%)",
+    "Threat To Commit Crime (17%)",
+    "Harassment, Criminal (8%)"
+   ]
+  },
+  "VIOL": {
+   "rows": 3707,
+   "top_charges": [
+    "Abuse Prevention Order, Violate (81%)",
+    "Witness, Intimidate (2%)",
+    "Threat To Commit Crime (2%)"
+   ]
+  },
+  "WIRE": {
+   "rows": 2,
+   "top_charges": [
+    "Wiretap, Unlawful (50%)",
+    "Receive Stolen Property -$1200 (50%)"
+   ]
+  }
+ },
+ "agencies": {
+  "QUIP": "Quincy Police Department",
+  "SPML": "Massachusetts State Police Milton",
+  "WEYP": "Weymouth Police Department",
+  "STOP": "Stoughton Police Department",
+  "BRAP": "Braintree Police Department",
+  "RANP": "Randolph Police Department",
+  "SPFR": "Massachusetts State Police Framingham",
+  "BROP": "Brookline Police Department"
+ }
+}
