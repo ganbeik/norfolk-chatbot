@@ -217,7 +217,8 @@ Rules:
 5. If a denominator is under 30, warn that the percentage rests on very few records.
 6. Explain crime-type and agency codes with the glossary. It lists the most common charges recorded under each code in this data; the official codebook meaning of CHAB, ELAB and HACR is unconfirmed, so say "appears to cover".
 7. Describe what the data shows. Do not speculate about causes, judge courts or people, or recommend policy.
-8. Style: plain English, 2-5 short sentences or a short bullet list. Bold the key number with **...**. No headings or tables. Do not mention chart ids, tools or JSON."""
+8. Style: start with ONE sentence in bold (**...**) that states the main finding with its key number. Then 1-4 short plain-English sentences or a short bullet list with the denominator and caveat. No headings or tables. Do not mention chart ids, tools or JSON.
+9. Finish with a last line in exactly this form: "Follow-ups: <question> | <question> | <question>" giving 2-3 short follow-up questions (under 12 words each) that the charts in the catalog can answer. Include this line even when you decline a question."""
 
 
 def catalog_text(store: Store) -> str:
@@ -310,8 +311,15 @@ def _openai_tools() -> list[dict]:
                                               "parameters": t["input_schema"]}} for t in TOOLS]
 
 
+def _text_of(content) -> str:
+    """Message content can be a string or a list of parts."""
+    if isinstance(content, list):
+        return "".join(p.get("text", "") for p in content if isinstance(p, dict))
+    return content or ""
+
+
 def ask_openrouter(api_key: str, store: Store, history: list[dict], user_text: str,
-                   model: str = DEFAULT_MODEL, max_tokens: int = 1200, post=None) -> Answer:
+                   model: str = DEFAULT_MODEL, max_tokens: int = 2000, post=None) -> Answer:
     """Same tool loop as ask_claude, through OpenRouter's OpenAI-compatible API."""
     import json as _json
     import requests
@@ -319,17 +327,25 @@ def ask_openrouter(api_key: str, store: Store, history: list[dict], user_text: s
     messages = [{"role": "system", "content": system_prompt(store)}] + build_messages(history, user_text)
     headers = {"Authorization": f"Bearer {api_key}", "Content-Type": "application/json",
                "X-Title": "Norfolk prosecution chatbot"}
-    charts, log = [], []
-    for _ in range(MAX_TOOL_STEPS):
-        r = post(OPENROUTER_URL, headers=headers, timeout=90,
-                 json={"model": model, "max_tokens": max_tokens, "messages": messages, "tools": _openai_tools()})
+    charts, log, said = [], [], []
+
+    def call(extra=None):
+        body = {"model": model, "max_tokens": max_tokens, "messages": messages, "tools": _openai_tools()}
+        body.update(extra or {})
+        r = post(OPENROUTER_URL, headers=headers, timeout=90, json=body)
         if r.status_code != 200:
             raise RuntimeError(f"OpenRouter {r.status_code}: {r.text[:300]}")
-        msg = r.json()["choices"][0]["message"]
+        return r.json()["choices"][0]["message"]
+
+    for _ in range(MAX_TOOL_STEPS):
+        msg = call()
+        text = _text_of(msg.get("content")).strip()
         calls = msg.get("tool_calls") or []
+        if text:
+            said.append(text)          # some models write the answer next to their tool calls
         if not calls:
-            return Answer((msg.get("content") or "").strip() or "(No answer returned.)", charts, log)
-        messages.append({"role": "assistant", "content": msg.get("content") or "", "tool_calls": calls})
+            break
+        messages.append({"role": "assistant", "content": text, "tool_calls": calls})
         for c in calls:
             name = c["function"]["name"]
             try:
@@ -339,7 +355,17 @@ def ask_openrouter(api_key: str, store: Store, history: list[dict], user_text: s
             out = run_tool(store, name, args, charts)
             log.append({"tool": name, "input": args, "output": out[:400]})
             messages.append({"role": "tool", "tool_call_id": c["id"], "content": out})
-    return Answer("I couldn't finish looking that up. Please try a narrower question.", charts, log)
+    else:
+        if not said:
+            return Answer("I couldn't finish looking that up. Please try a narrower question.", charts, log)
+
+    if not said:
+        # Model stopped without writing anything: ask once more for the written answer, no more tools.
+        messages.append({"role": "user", "content": "Now write your answer to my question using the numbers you looked up."})
+        text = _text_of(call({"tool_choice": "none"}).get("content")).strip()
+        if text:
+            said.append(text)
+    return Answer("\n\n".join(said) or "(No answer returned.)", charts, log)
 
 
 # ----------------------------------------------------------------------------- offline mode
