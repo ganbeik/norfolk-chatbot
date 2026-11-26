@@ -12,11 +12,15 @@ streamlit run app.py
 
 The app opens in your browser at http://localhost:8501.
 
-**API key.** Written answers need an Anthropic API key (from console.anthropic.com). Use one of these:
+**API key.** Written answers go through OpenRouter. Put the key in a `.env` file in this folder:
 
-- Set an environment variable: `export ANTHROPIC_API_KEY=sk-ant-...` (Windows: `set ANTHROPIC_API_KEY=...`)
-- Copy `.streamlit/secrets.toml.example` to `.streamlit/secrets.toml` and put the key there
-- Paste it into the sidebar. It is kept only for that browser session.
+```bash
+cp .env.example .env      # then open .env and paste the key after OPENROUTER_API_KEY=
+```
+
+`.env` is listed in `.gitignore`, so it is never committed. On Streamlit Community Cloud, paste `OPENROUTER_API_KEY = "..."` into the app's **Settings → Secrets** instead. You can also paste a key into the sidebar (kept only for that browser session).
+
+**Models.** Development uses low-cost models only: `anthropic/claude-haiku-5.5` (default) and `anthropic/claude-haiku-4.5`. Change `MODELS` in `core.py` to add others.
 
 Without a key the app runs in **offline mode**. It declines questions the data can't answer, and otherwise shows the closest chart without a written answer.
 
@@ -26,11 +30,12 @@ Without a key the app runs in **offline mode**. It declines questions the data c
 |---|---|
 | `app.py` | The Streamlit screen: chat, example questions, chart browser, settings |
 | `core.py` | Data lookups, Claude's instructions, the tool loop and offline mode. No Streamlit code |
-| `charts.py` | Plotly charts with hover details (value, count of total, change since first year, code meanings) |
+| `widget.py` + `chart_widget.html` | Default charts: the dashboard's own chart code. Point at a colour to fade the rest and see value, count of total, change since first year and code meaning; click the legend to hide, double-click to isolate; Percent/Count switch; table view |
+| `charts.py` | Alternative Plotly charts (sidebar → Chart style → Plotly) |
 | `data/dashboard_data.json` | Chart numbers written by the analysis notebook |
 | `data/glossary.json` | Plain-language hints for crime and agency codes, built from the data |
 
-For each question, Claude gets the rules and a catalog of the 12 charts. It must call `get_chart_data` before giving any number, and `show_chart` to pick the chart displayed under the answer. Open **"How this answer was found"** under an answer to see which lookups it made.
+For each question, the model gets the rules and a catalog of the 12 charts. It must call `get_chart_data` before giving any number, and `show_chart` to pick the chart displayed under the answer. Open **"How this answer was found"** under an answer to see which lookups it made.
 
 The rules tell it to:
 - use only the numbers it looked up
