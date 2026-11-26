@@ -12,8 +12,10 @@ import re
 from dataclasses import dataclass, field
 from pathlib import Path
 
-DEFAULT_MODEL = "claude-sonnet-5-5"
-MODELS = ["claude-sonnet-5-5", "claude-opus-5-5", "claude-haiku-5-5"]
+# OpenRouter model ids. Development: low-cost models only.
+DEFAULT_MODEL = "anthropic/claude-haiku-5.5"
+MODELS = ["anthropic/claude-haiku-5.5", "anthropic/claude-haiku-4.5"]
+OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 MAX_TOOL_STEPS = 6
 HISTORY_TURNS = 8   # earlier user/assistant turns sent back to Claude for follow-up questions
 
@@ -299,6 +301,44 @@ def ask_claude(client, store: Store, history: list[dict], user_text: str,
             log.append({"tool": u["name"], "input": u["input"], "output": out[:400]})
             results.append({"type": "tool_result", "tool_use_id": u["id"], "content": out})
         messages.append({"role": "user", "content": results})
+    return Answer("I couldn't finish looking that up. Please try a narrower question.", charts, log)
+
+
+def _openai_tools() -> list[dict]:
+    """TOOLS in the OpenAI / OpenRouter function format."""
+    return [{"type": "function", "function": {"name": t["name"], "description": t["description"],
+                                              "parameters": t["input_schema"]}} for t in TOOLS]
+
+
+def ask_openrouter(api_key: str, store: Store, history: list[dict], user_text: str,
+                   model: str = DEFAULT_MODEL, max_tokens: int = 1200, post=None) -> Answer:
+    """Same tool loop as ask_claude, through OpenRouter's OpenAI-compatible API."""
+    import json as _json
+    import requests
+    post = post or requests.post
+    messages = [{"role": "system", "content": system_prompt(store)}] + build_messages(history, user_text)
+    headers = {"Authorization": f"Bearer {api_key}", "Content-Type": "application/json",
+               "X-Title": "Norfolk prosecution chatbot"}
+    charts, log = [], []
+    for _ in range(MAX_TOOL_STEPS):
+        r = post(OPENROUTER_URL, headers=headers, timeout=90,
+                 json={"model": model, "max_tokens": max_tokens, "messages": messages, "tools": _openai_tools()})
+        if r.status_code != 200:
+            raise RuntimeError(f"OpenRouter {r.status_code}: {r.text[:300]}")
+        msg = r.json()["choices"][0]["message"]
+        calls = msg.get("tool_calls") or []
+        if not calls:
+            return Answer((msg.get("content") or "").strip() or "(No answer returned.)", charts, log)
+        messages.append({"role": "assistant", "content": msg.get("content") or "", "tool_calls": calls})
+        for c in calls:
+            name = c["function"]["name"]
+            try:
+                args = _json.loads(c["function"].get("arguments") or "{}")
+            except ValueError:
+                args = {}
+            out = run_tool(store, name, args, charts)
+            log.append({"tool": name, "input": args, "output": out[:400]})
+            messages.append({"role": "tool", "tool_call_id": c["id"], "content": out})
     return Answer("I couldn't finish looking that up. Please try a narrower question.", charts, log)
 
 
