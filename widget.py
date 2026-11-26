@@ -57,5 +57,25 @@ def chart_html(store: Store, chart_id: str, from_year=None, to_year=None, series
         n_cats = len(cats)
     payload = {"spec": spec, "yFrom": y_from, "yTo": y_to, "hidden": hidden}
     data = json.dumps(payload, ensure_ascii=False).replace("</", "<\\/")
-    html = TEMPLATE.replace("/*__DATA__*/null", data)
+    html = TEMPLATE.replace("/*__DATA__*/null", data) + FIT_SCRIPT
     return html, _height(spec, n_cats, len(names) - len(hidden))
+
+
+# Shrinks (or grows) the chart's frame in the Streamlit page to fit the chart exactly,
+# including when "Show table" opens, so there is no empty gap under charts.
+FIT_SCRIPT = """
+<script>
+(function () {
+  function fit() {
+    var root = document.querySelector('.viz-root');
+    if (!root || !window.frameElement) return;
+    var h = Math.ceil(root.getBoundingClientRect().height) + 8;
+    window.frameElement.style.height = h + 'px';
+    window.frameElement.height = h;
+  }
+  window.addEventListener('load', fit);
+  setTimeout(fit, 200); setTimeout(fit, 800);
+  if (window.ResizeObserver) new ResizeObserver(fit).observe(document.body);
+})();
+</script>
+"""
